@@ -1,4 +1,4 @@
-from base import Base
+from .base import Base
 from sqlalchemy import create_engine, Column, Integer, String, UniqueConstraint
 from sqlalchemy.orm import sessionmaker, relationship
 
