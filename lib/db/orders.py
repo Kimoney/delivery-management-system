@@ -11,6 +11,8 @@ class Order(Base):
     cost = Column(Integer, nullable=False)
     customer_name = Column(String, nullable=False)
     location = Column(String, nullable=False)
+    # Define relationship with Delivery
+    deliveries = relationship("Delivery", back_populates="orders")
 
 class CreateOrder:
     def  __init__(self, db_name):

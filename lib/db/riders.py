@@ -12,3 +12,5 @@ class Rider(Base):
     truck_id = Column(Integer, ForeignKey('trucks.id'))
     # Define relationship with Truck
     truck = relationship('Truck', back_populates='riders')
+    # Define relationship with Delivery
+    deliveries = relationship("Delivery", back_populates="riders")
