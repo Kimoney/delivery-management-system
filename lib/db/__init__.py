@@ -1,4 +1,4 @@
-from .base import Base
+from .delivery_management_system import Base
 from .orders import Order
 from .trucks import Truck
 from .riders import Rider

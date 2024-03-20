@@ -1,4 +1,4 @@
-from .base import Base
+from .delivery_management_system import Base
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
