@@ -1,5 +1,6 @@
 from base import Base
 from orders import Order
+from trucks import Truck
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
