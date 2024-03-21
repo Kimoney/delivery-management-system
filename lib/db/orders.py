@@ -1,4 +1,4 @@
-from .delivery_management_system import Base
+from . import Base
 from sqlalchemy import create_engine, Column, Integer, String, UniqueConstraint
 from sqlalchemy.orm import sessionmaker, relationship
 
