@@ -1,8 +1,8 @@
 from helpers import (
     exit_program,
-    create_database,
     create_order,
-    add_truck
+    add_truck,
+    add_rider
 )
 
 
@@ -13,10 +13,12 @@ def main():
         if choice == "0":
             exit_program()
         elif choice == "1":
-            pass
+            name = input("Enter rider's name: ")
+            location = input("Enter rider's route location: ")
+            truck_id = input("Enter rider's truck id: ")
+            add_rider(name, location, truck_id)
         elif choice == "2":
-            db_name = input("Enter database name: ")
-            create_database(db_name)
+          pass
         elif choice == "3":
             product = input("Enter product name: ")
             quantity = input("Enter quantity: ")
@@ -36,8 +38,8 @@ def main():
 def menu():
     print("\033[036m Please select an option:\033[0m")
     print("\033[093m 0. Exit the program \033[0m")
-    print("\033[093m 1. Empty \033[0m")
-    print("\033[093m 2. Create A Database \033[0m")
+    print("\033[093m 1. Add A Rider \033[0m")
+    print("\033[093m 2. Empty \033[0m")
     print("\033[093m 3. Create An Order \033[0m")
     print("\033[093m 4. Add Truck To Your Fleet \033[0m")
 

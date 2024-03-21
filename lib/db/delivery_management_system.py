@@ -31,12 +31,33 @@ class DeliveryManagementSystem:
         print(f"\033[92m Success!! Order created at {datetime.now()} \033[0m")
 
     def add_truck(self, reg_no, truck_capacity, model):
+        if not reg_no or not truck_capacity or not model:
+            print("\033[31m Error: Reg. No, Truck Capacity and Model are required \033[0m")
 
         truck = Truck(reg_no=reg_no, truck_capacity=truck_capacity, model=model)
-        self.session.add(truck)
-        self.session.commit()
-        print(f"\033[92m Success!! Truck saved at {datetime.now()} \033[0m")
-        
+
+        try:
+            self.session.add(truck)
+            self.session.commit()
+            print(f"\033[92m Success!! Truck saved at {datetime.now()} \033[0m")
+        except Exception as e:
+            self.session.rollback()
+            print(f"\033[31m Error: {e} \033[0m")
+    
+
+    def add_rider(self, name, location, truck_id):
+        if not name or not location or not truck_id:
+            print("\033[31m Error: Name, Location and Truck ID are required \033[0m")
+
+        rider = Rider(name=name, location=location, truck_id=truck_id)
+
+        try:
+            self.session.add(rider)
+            self.session.commit()
+            print(f"\033[92m Success!! Rider added at {datetime.now()} \033[0m")
+        except Exception as e:
+            self.session.rollback()
+            print(f"\033[31m Error: {e} \033[0m")
 
 
 if __name__ == '__main__':
