@@ -1,18 +1,19 @@
 from db import delivery_management_system
+from datetime import datetime
 
 DMS = delivery_management_system.DeliveryManagementSystem
-
-def helper_1():
-    print("Performing useful function#1.")
-
-def create_database(db_name):
-    db_name = db_name.lower()
-    DMS(f"{db_name}.db")
-    print(f"\033[093m Success!! Database {db_name}.db created.\033[0m")
+# Create DataBase
+    
+dms_db = DMS("dms.db")
+print(f"\033[92m Success!! Database Created at {datetime.now()} \033[0m")
 
 def create_order(product, quantity, cost, customer_name, location):
-    DMS.create_order(product, quantity, cost, customer_name, location)
+    dms_db.create_order(product, quantity, cost, customer_name, location)
     print(f"\033[093m Success!! Order created.\033[0m")
+
+def add_truck(reg_no, truck_capacity, model):
+    dms_db.add_truck(reg_no, truck_capacity, model)
+    print(f"\033[093m Success!! Truck {reg_no} Added.\033[0m")
 
 
 
