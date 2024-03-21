@@ -15,8 +15,18 @@ class DeliveryManagementSystem:
         Base.metadata.create_all(self.engine)
         Session =  sessionmaker(bind=self.engine)
         self.session=Session()
+    
+    def create_order(self, product, quantity, cost, customer_name, location ):
+
+        order = Order(product=product, quantity=quantity, cost=cost, customer_name=customer_name, location=location)
+        self.session.add(order)
+        self.session.commit()
+        print(f"\033[92m Success!! Entry saved at {datetime.now()} \033[0m")
+
 
 if __name__ == '__main__':
 
     trial = DeliveryManagementSystem("dms_test.db")
     print(f"\033[92m Success!! Database Created at {datetime.now()} \033[0m")
+    trial.create_order("Laptop", 5, 2500, "Kimani", "Nairobi")
+    print(f"\033[92m Success!! Entry Created at {datetime.now()} \033[0m")    
