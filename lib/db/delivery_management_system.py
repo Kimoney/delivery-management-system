@@ -59,6 +59,12 @@ class DeliveryManagementSystem:
             self.session.rollback()
             print(f"\033[31m Error: {e} \033[0m")
 
+    def create_delivery(self, order_id, rider_id):
+        delivery = Delivery(order_id=order_id, rider_id=rider_id)
+        self.session.add(delivery)
+        self.session.commit()
+        print(f"\033[92m Success!! Delivery made at {datetime.now()} \033[0m")
+
 
 if __name__ == '__main__':
     pass

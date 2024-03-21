@@ -19,7 +19,9 @@ def add_rider(name, location, truck_id):
     dms_db.add_rider(name, location, truck_id)
     print(f"\033[093m Success!! Rider {name} Added.\033[0m")
 
-
+def create_delivery(order_id, rider_id):
+    dms_db.create_delivery(order_id, rider_id)
+    print(f"\033[093m Success!! Delivery made at {datetime.now()}.\033[0m")
 
 
 

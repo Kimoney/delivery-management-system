@@ -2,7 +2,8 @@ from helpers import (
     exit_program,
     create_order,
     add_truck,
-    add_rider
+    add_rider,
+    create_delivery
 )
 
 
@@ -18,7 +19,9 @@ def main():
             truck_id = input("Enter rider's truck id: ")
             add_rider(name, location, truck_id)
         elif choice == "2":
-          pass
+          order_id = input("Enter Order id: ")
+          rider_id = input("Enter rider's id: ")
+          create_delivery(order_id, rider_id)
         elif choice == "3":
             product = input("Enter product name: ")
             quantity = input("Enter quantity: ")
@@ -39,7 +42,7 @@ def menu():
     print("\033[036m Please select an option:\033[0m")
     print("\033[093m 0. Exit the program \033[0m")
     print("\033[093m 1. Add A Rider \033[0m")
-    print("\033[093m 2. Empty \033[0m")
+    print("\033[093m 2. Create Delivery \033[0m")
     print("\033[093m 3. Create An Order \033[0m")
     print("\033[093m 4. Add Truck To Your Fleet \033[0m")
 
