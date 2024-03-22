@@ -149,6 +149,27 @@ class DeliveryManagementSystem:
             print(f"\033[31m Error: {e} \033[0m")
 
     # 4. Deliveries
+            
+# DELETE
+    # 1. Orders
+            
+    # 1. Trucks
+    def delete_truck(self, id_):
+        if not id_:
+            print("\033[31m Error: TRUCK ID is required. \033[0m")
+    # Step 1: Query the Truck to update using its primary key
+        truck = self.session.query(Truck).get(id_)
+    # Step 2: If the row exists, delete it
+        if truck:
+            self.session.delete(truck)
+    # Step 3: Commit the transaction
+            self.session.commit()
+            print(f"\033[31m TRUCK ID {id_} DELETED SUCCESSFULLY!! \033[0m")
+
+    # 1. Riders
+            
+    # 1. Deliveries
+
 
 if __name__ == '__main__':
     pass

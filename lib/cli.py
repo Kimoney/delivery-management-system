@@ -10,7 +10,8 @@ from helpers import (
     get_all_completed_deliveries,
     get_all_pending_deliveries,
     update_rider,
-    update_truck
+    update_truck,
+    delete_truck
 )
 
 
@@ -39,6 +40,9 @@ def main():
                     truck_capacity = input("Enter Load Capacity:> ")
                     model = input("Enter Model:> ")
                     update_truck(id_, reg_no, truck_capacity, model)
+                elif choice == "4":
+                    id_ = input("Enter Truck Id:> ")
+                    delete_truck(id_)
                 # elif choice == "2":
                 #     name = input("Enter rider's name: ")
                 #     location = input("Enter rider's route location: ")
@@ -122,7 +126,7 @@ def menu():
     print("\033[093m 4. Create An Order \033[0m")
 
 def manage_supply_chain():
-    print("\033[036m******************SUPPLY CHAIN MANAAGEMENT******************\033[0m")
+    print("\033[036m\033[1m******************SUPPLY CHAIN MANAAGEMENT******************\033[0m")
     print("\033[093m 0. Go To Main Menu \033[0m")
     print("\033[093m*********Manage Fleet*********\033[0m")
     print("\033[093m 1. View Your Fleet\033[0m")
