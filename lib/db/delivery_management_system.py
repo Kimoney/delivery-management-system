@@ -108,6 +108,26 @@ class DeliveryManagementSystem:
 
     # 2. Trucks
 
+    def update_truck(self, id_, reg_no, truck_capacity, model):
+        if not id_:
+            print("\033[31m Error: TRUCK ID, REG No.(Has To Be Unique), TRUCK CAPACITY are all required. \033[0m")
+
+# Step 1: Query the Truck to update using its primary key
+        truck = self.session.query(Truck).get(id_)
+
+# Step 2: Modify the attributes of the queried rider
+        try:
+            truck.reg_no = reg_no
+            truck.truck_capacity = truck_capacity
+            truck.model = model
+            self.session.commit()
+            print(f"\033[92m Success!! Truck Updated{datetime.now()} \033[0m")
+        except Exception as e:
+            self.session.rollback()
+            print("\033[31m Error: TRUCK ID, REG No.(Has To Be Unique), TRUCK CAPACITY are all required. \033[0m")
+            print(f"\033[31m Error: {e} \033[0m")
+
+
     # 3. Riders
 
     def update_rider(self, id_, location, truck_id):
@@ -125,7 +145,7 @@ class DeliveryManagementSystem:
             print(f"\033[92m Success!! Rider Re-Assigned{datetime.now()} \033[0m")
         except Exception as e:
             self.session.rollback()
-            print("\033[31m Error: Rider ID is required \033[0m")
+            print("\033[31m Error: RIDER ID, an UNASSIGNED LOCATION, and an UNASSIGNED TRUCK are required \033[0m")
             print(f"\033[31m Error: {e} \033[0m")
 
     # 4. Deliveries
