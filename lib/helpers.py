@@ -23,6 +23,13 @@ def create_delivery(order_id, rider_id):
     dms_db.create_delivery(order_id, rider_id)
     print(f"\033[093m Success!! Delivery made at {datetime.now()}.\033[0m")
 
+def get_all_orders():
+    orders = dms_db.get_all_orders()
+    print(f"\033[093m *********Orders As {datetime.now()} ********* \033[0m")
+
+    for order in orders:
+        print(f"\033[036m<Order No.: {order.id} Customer: {order.customer_name} Product :{order.product} Quantity: {order.quantity} Amount: {order.cost} Location: {order.location}> \033[0m")
+
 
 
 def exit_program():

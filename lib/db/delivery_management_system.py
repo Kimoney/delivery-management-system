@@ -23,12 +23,17 @@ class DeliveryManagementSystem:
             f"=====Success!! Database {self.name} Created Successfully"
         )
     
+# CREATE ENTRIES
+    # 1. Order
+    
     def create_order(self, product, quantity, cost, customer_name, location ):
 
         order = Order(product=product, quantity=quantity, cost=cost, customer_name=customer_name, location=location)
         self.session.add(order)
         self.session.commit()
         print(f"\033[92m Success!! Order created at {datetime.now()} \033[0m")
+
+    # 1. Truck
 
     def add_truck(self, reg_no, truck_capacity, model):
         if not reg_no or not truck_capacity or not model:
@@ -43,7 +48,8 @@ class DeliveryManagementSystem:
         except Exception as e:
             self.session.rollback()
             print(f"\033[31m Error: {e} \033[0m")
-    
+
+    # 1. Rider
 
     def add_rider(self, name, location, truck_id):
         if not name or not location or not truck_id:
@@ -59,11 +65,19 @@ class DeliveryManagementSystem:
             self.session.rollback()
             print(f"\033[31m Error: {e} \033[0m")
 
+    # 1. Delivery
+
     def create_delivery(self, order_id, rider_id):
         delivery = Delivery(order_id=order_id, rider_id=rider_id)
         self.session.add(delivery)
         self.session.commit()
         print(f"\033[92m Success!! Delivery made at {datetime.now()} \033[0m")
+
+# GET ALL
+    # 1. Orders
+        
+    def get_all_orders(self):
+        return self.session.query(Order).all()
 
 
 if __name__ == '__main__':

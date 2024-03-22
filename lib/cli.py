@@ -3,7 +3,8 @@ from helpers import (
     create_order,
     add_truck,
     add_rider,
-    create_delivery
+    create_delivery,
+    get_all_orders
 )
 
 
@@ -34,6 +35,8 @@ def main():
             truck_capacity = input("Enter Truck's Load Capacity: >")
             model = input("Enter Truck's model: >")
             add_truck(reg_no, truck_capacity, model)
+        elif choice == "5":
+            get_all_orders()
         else:
             print("Invalid choice")
 
@@ -45,6 +48,7 @@ def menu():
     print("\033[093m 2. Create Delivery \033[0m")
     print("\033[093m 3. Create An Order \033[0m")
     print("\033[093m 4. Add Truck To Your Fleet \033[0m")
+    print("\033[093m 5. View All Orders \033[0m")
 
 
 if __name__ == "__main__":
