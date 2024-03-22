@@ -89,10 +89,10 @@ class DeliveryManagementSystem:
     def get_all_riders(self):
         return self.session.query(Rider).all()
     
-    # # 1. Delivery
+    # 1. Delivery
         
-    # def get_all_deliveries(self):
-    #     return self.session.query(Delivery).all()
+    def get_all_deliveries(self):
+        return self.session.query(Delivery).all()
 
 
 if __name__ == '__main__':
