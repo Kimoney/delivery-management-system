@@ -136,6 +136,16 @@ def order_fulfilment():
 def reports():
     print("\033[036m\033[1m******************REPORTS******************\033[0m")
     print("\033[093m 0. Go To Main Menu \033[0m")
+    print("\033[093m 1. View All Riders \033[0m")
+    print("\033[093m 2. View All Trucks \033[0m")
+    print("\033[093m 3. View All Orders \033[0m")
+    print("\033[093m 4. View All Deliveries \033[0m")
+    print("\033[093m 5. View All Pending Deliveries \033[0m")
+    print("\033[093m 6. View All Pending Deliveries By Location\033[0m")
+    print("\033[093m 7. View All Pending Deliveries With No Rider Assigned\033[0m")
+    print("\033[093m 8. View A Rider's Deliveries \033[0m")
+    print("\033[093m 9. View A Rider's Pending Deliveries \033[0m")
+    print("\033[093m 10. Create An Order \033[0m")
 
 if __name__ == "__main__":
     main()
