@@ -25,12 +25,17 @@ def create_delivery(order_id, rider_id):
 
 def get_all_orders():
     orders = dms_db.get_all_orders()
-    print(f"\033[093m *********Orders As {datetime.now()} ********* \033[0m")
+    print(f"\033[032m\033[1m *********Orders As {datetime.now()} ********* \033[0m")
 
     for order in orders:
-        print(f"\033[036m<Order No.: {order.id} Customer: {order.customer_name} Product :{order.product} Quantity: {order.quantity} Amount: {order.cost} Location: {order.location}> \033[0m")
+        print(f"\033[036m<Order No.: {order.id} | Customer: {order.customer_name} | Product :{order.product} | Quantity: {order.quantity} | Amount: {order.cost} | Location: {order.location}> \033[0m")
 
+def get_all_trucks():
+    trucks = dms_db.get_all_trucks()
+    print(f"\033[032m\033[1m *********Your Fleet At {datetime.now()} ********* \033[0m")
 
+    for truck in trucks:
+        print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
 
 def exit_program():
     print("\033[093m Sad To See You Leave :-( See You Soon With More Orders!\033[0m")

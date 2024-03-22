@@ -78,6 +78,11 @@ class DeliveryManagementSystem:
         
     def get_all_orders(self):
         return self.session.query(Order).all()
+    
+    # 1. Truck
+        
+    def get_all_trucks(self):
+        return self.session.query(Truck).all()
 
 
 if __name__ == '__main__':
