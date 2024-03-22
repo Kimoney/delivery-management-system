@@ -8,7 +8,8 @@ from helpers import (
     get_all_trucks,
     get_all_riders,
     get_all_completed_deliveries,
-    get_all_pending_deliveries
+    get_all_pending_deliveries,
+    update_rider
 )
 
 
@@ -35,8 +36,11 @@ def main():
                     truck_id = input("Enter rider's truck id: ")
                     add_rider(name, location, truck_id)
                 elif choice == "3":
-                    # Reassign A Rider's Location 
-                    print("Should Reassign A Rider's Location ")
+                    # Reassign A Rider's Location
+                    id_ = input("Enter Rider's id: > ")
+                    location = input("Enter New Route: > ")
+                    truck_id = input("Enter Truck id: > ")
+                    update_rider(id_, location, truck_id)
                 elif choice == "4":
                     get_all_trucks()
                 elif choice == "5":
@@ -115,11 +119,11 @@ def manage_supply_chain():
     print("\033[093m 0. Go To Main Menu \033[0m")
     print("\033[093m 1. Add Truck To Your Fleet\033[0m")
     print("\033[093m 2. Add A New Rider\033[0m")
-    print("\033[093m 3. Reassign A Rider's Location \033[0m")
-    print("\033[093m 4. View Your Fleet \033[0m")
-    print("\033[093m 5. View All Riders \033[0m")
-    print("\033[093m 6. View All Orders \033[0m")
-    print("\033[093m 7. View All Pending Deliveries \033[0m")
+    print("\033[093m 3. Reassign A Rider\033[0m")
+    print("\033[093m 4. View Your Fleet\033[0m")
+    print("\033[093m 5. View All Riders\033[0m")
+    print("\033[093m 6. View All Orders\033[0m")
+    print("\033[093m 7. View All Pending Deliveries\033[0m")
     print("\033[093m 8. View All Completed Deliveries \033[0m")
     print("\033[093m 9. Create An Order \033[0m")
 

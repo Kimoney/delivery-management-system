@@ -47,6 +47,7 @@ class DeliveryManagementSystem:
             print(f"\033[92m Success!! Truck saved at {datetime.now()} \033[0m")
         except Exception as e:
             self.session.rollback()
+            print("\033[31m Error: Reg No. Already Exists. Reg No. Has To Be Unique \033[0m")
             print(f"\033[31m Error: {e} \033[0m")
 
     # 1. Rider
@@ -102,6 +103,32 @@ class DeliveryManagementSystem:
         # Retrieve orders whose IDs are not in the subquery
         return self.session.query(Order).filter(not_(Order.id.in_(subquery))).all()
 
+# Update
+    # 1. Orders
+
+    # 2. Trucks
+
+    # 3. Riders
+
+    def update_rider(self, id_, location, truck_id):
+        if not id_:
+            print("\033[31m Error: Rider id is required and an unassigned location & Truck \033[0m")
+
+# Step 1: Query the rider to update using its primary key
+        rider = self.session.query(Rider).get(id_)
+
+# Step 2: Modify the attributes of the queried rider
+        try:
+            rider.location = location
+            rider.truck_id = truck_id
+            self.session.commit()
+            print(f"\033[92m Success!! Rider Re-Assigned{datetime.now()} \033[0m")
+        except Exception as e:
+            self.session.rollback()
+            print("\033[31m Error: Rider ID is required \033[0m")
+            print(f"\033[31m Error: {e} \033[0m")
+
+    # 4. Deliveries
 
 if __name__ == '__main__':
     pass

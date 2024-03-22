@@ -62,6 +62,10 @@ def get_all_pending_deliveries():
     for pending in pending_deliveries:
         print(f"\033[036m<Delivery Id: {None} | Order: {pending.id} | Customer: {pending.customer_name} | Product :{pending.product} | Quantity: {pending.quantity} | Amount: {pending.cost} | Location: {pending.location}> \033[0m")
 
+def update_rider(id_, location, truck_id):
+    dms_db.update_rider(id_, location, truck_id)
+    print(f"\033[093m Success!! Rider Assignment Completed at {datetime.now()}.\033[0m")
+
 def exit_program():
     print("\033[093m Sad To See You Leave :-( See You Soon With More Orders!\033[0m")
     exit()
