@@ -48,8 +48,8 @@ def get_all_riders():
     for rider in riders:
         print(f"\033[036m<Rider Id: {rider.id} | Assigned Truck: {rider.truck_id} | Location: {rider.location} | Name: {rider.name}> \033[0m")
 
-def get_all_deliveries():
-    deliveries = dms_db.get_all_deliveries()
+def get_all_completed_deliveries():
+    deliveries = dms_db.get_all_completed_deliveries()
     print(f"\033[032m\033[1m *********All Deliveries As At {datetime.now()} ********* \033[0m")
 
     for delivery in deliveries:

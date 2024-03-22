@@ -91,7 +91,7 @@ class DeliveryManagementSystem:
     
     # 1. Delivery
         
-    def get_all_deliveries(self):
+    def get_all_completed_deliveries(self):
         return self.session.query(Delivery).all()
 
 
