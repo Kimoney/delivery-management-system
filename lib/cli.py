@@ -5,7 +5,8 @@ from helpers import (
     add_rider,
     create_delivery,
     get_all_orders,
-    get_all_trucks
+    get_all_trucks,
+    get_all_riders
 )
 
 
@@ -40,6 +41,8 @@ def main():
             get_all_orders()
         elif choice == "6":
             get_all_trucks()
+        elif choice == "7":
+            get_all_riders()
         else:
             print("Invalid choice")
 
@@ -53,7 +56,7 @@ def menu():
     print("\033[093m 4. Add Truck To Your Fleet \033[0m")
     print("\033[093m 5. View All Orders \033[0m")
     print("\033[093m 6. View Your Fleet \033[0m")
-
+    print("\033[093m 7. View All Riders \033[0m")
 
 if __name__ == "__main__":
     main()
