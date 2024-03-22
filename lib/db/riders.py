@@ -9,7 +9,7 @@ class Rider(Base):
     name = Column(String, unique=True, nullable=False)
     location = Column(String, unique=True, nullable=False)
     # Define foreign key relationship with trucks table
-    truck_id = Column(Integer, ForeignKey('trucks.id'))
+    truck_id = Column(Integer, ForeignKey('trucks.id'), unique=True)
     # Define relationship with Truck
     truck = relationship('Truck', back_populates='riders')
     # Define relationship with Delivery
