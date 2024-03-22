@@ -50,10 +50,17 @@ def get_all_riders():
 
 def get_all_completed_deliveries():
     deliveries = dms_db.get_all_completed_deliveries()
-    print(f"\033[032m\033[1m *********All Deliveries As At {datetime.now()} ********* \033[0m")
+    print(f"\033[032m\033[1m *********All Completed Deliveries As At {datetime.now()} ********* \033[0m")
 
     for delivery in deliveries:
         print(f"\033[036m<Delivery Id: {delivery.id} | Order: {delivery.order_id} | Completed At: {delivery.time} | By Rider {delivery.rider_id} > \033[0m")
+
+def get_all_pending_deliveries():
+    pending_deliveries = dms_db.get_all_pending_deliveries()
+    print(f"\033[032m\033[1m *********All Pending Deliveries As At {datetime.now()} ********* \033[0m")
+
+    for pending in pending_deliveries:
+        print(f"\033[036m<Delivery Id: {None} | Order: {pending.id} | Customer: {pending.customer_name} | Product :{pending.product} | Quantity: {pending.quantity} | Amount: {pending.cost} | Location: {pending.location}> \033[0m")
 
 def exit_program():
     print("\033[093m Sad To See You Leave :-( See You Soon With More Orders!\033[0m")

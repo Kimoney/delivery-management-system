@@ -7,7 +7,8 @@ from helpers import (
     get_all_orders,
     get_all_trucks,
     get_all_riders,
-    get_all_completed_deliveries
+    get_all_completed_deliveries,
+    get_all_pending_deliveries
 )
 
 
@@ -46,6 +47,8 @@ def main():
             get_all_riders()
         elif choice == "8":
             get_all_completed_deliveries()
+        elif choice == "9":
+            get_all_pending_deliveries()
         else:
             print("Invalid choice")
 

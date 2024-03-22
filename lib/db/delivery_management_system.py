@@ -1,5 +1,5 @@
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, not_
 from sqlalchemy.orm import sessionmaker
 from . import Base
 from .orders import Order
@@ -89,10 +89,18 @@ class DeliveryManagementSystem:
     def get_all_riders(self):
         return self.session.query(Rider).all()
     
-    # 1. Delivery
+    # 1. Delivery (Completed)
         
     def get_all_completed_deliveries(self):
         return self.session.query(Delivery).all()
+    
+    # 1. Delivery (Pending)
+        
+    def get_all_pending_deliveries(self):
+        # Subquery to get IDs of orders that have corresponding records in Delivery table
+        subquery = self.session.query(Delivery.order_id).distinct()
+        # Retrieve orders whose IDs are not in the subquery
+        return self.session.query(Order).filter(not_(Order.id.in_(subquery))).all()
 
 
 if __name__ == '__main__':
