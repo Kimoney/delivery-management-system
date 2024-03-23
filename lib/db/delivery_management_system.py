@@ -113,7 +113,7 @@ class DeliveryManagementSystem:
 # Step 1: Query the Order to update using its primary key
         order = self.session.query(Order).get(id_)
 
-# Step 2: Modify the attributes of the queried rider
+# Step 2: Modify the attributes of the queried Order
         try:
             order.product = product
             order.quantity = quantity
@@ -138,7 +138,7 @@ class DeliveryManagementSystem:
 # Step 1: Query the Truck to update using its primary key
         truck = self.session.query(Truck).get(id_)
 
-# Step 2: Modify the attributes of the queried rider
+# Step 2: Modify the attributes of the queried Truck
         try:
             truck.reg_no = reg_no
             truck.truck_capacity = truck_capacity
@@ -157,10 +157,10 @@ class DeliveryManagementSystem:
         if not id_ or not location or not truck_id:
             print("\033[31m Error: Rider id is required and an unassigned location & Truck \033[0m")
 
-# Step 1: Query the rider to update using its primary key
+# Step 1: Query the Rider to update using its primary key
         rider = self.session.query(Rider).get(id_)
 
-# Step 2: Modify the attributes of the queried rider
+# Step 2: Modify the attributes of the queried Rider
         try:
             rider.location = location
             rider.truck_id = truck_id
@@ -173,6 +173,25 @@ class DeliveryManagementSystem:
 
     # 4. Deliveries
             
+    def update_delivery(self, id_, order_id, rider_id):
+        if not id_ or not order_id or not rider_id:
+            print("\033[31m Error: DELIVERY ID, ORDER ID and RIDER ID ARE REQUIRED \033[0m")
+
+# Step 1: Query the Delivery to update using its primary key
+        delivery = self.session.query(Delivery).get(id_)
+
+# Step 2: Modify the attributes of the queried Delivery
+        try:
+            delivery.order_id = order_id
+            delivery.rider_id = rider_id
+            self.session.commit()
+            print(f"\033[92m Success!! Delivery Updated!! {datetime.now()} \033[0m")
+        except Exception as e:
+            self.session.rollback()
+            print("\033[31m Error: DELIVERY ID, ORDER ID and RIDER ID ARE REQUIRED \033[0m")
+            print(f"\033[31m Error: {e} \033[0m")
+
+
 # DELETE
     # 1. Orders
         
@@ -207,7 +226,7 @@ class DeliveryManagementSystem:
     def delete_rider(self, id_):
         if not id_:
             print("\033[31m Error: Rider ID is required. \033[0m")
-    # Step 1: Query the Truck to update using its primary key
+    # Step 1: Query the Rider to update using its primary key
         rider = self.session.query(Rider).get(id_)
     # Step 2: If the row exists, delete it
         if rider:

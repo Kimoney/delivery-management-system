@@ -14,6 +14,7 @@ from helpers import (
     delete_rider,
     get_all_completed_deliveries,
     get_all_pending_deliveries,
+    # update_delivery,
     delete_delivery,
     create_delivery,
 
@@ -87,9 +88,12 @@ def main():
                     get_all_pending_deliveries()
                 elif choice == "14":
                     get_all_completed_deliveries()
+                # elif choice == "15":
+                #     id_ = input("Enter Delivery Id:> ")
+                #     order_id = input("Enter Order Id:> ")
+                #     rider_id = input("Enter Rider Id:> ")
+                #     update_delivery(id_, order_id, rider_id)
                 elif choice == "15":
-                    pass
-                elif choice == "16":
                     id_ = input("Enter Delivery Id:> ")
                     delete_delivery(id_)
                 else:
@@ -105,14 +109,12 @@ def main():
                     rider_id = input("Enter rider's id: ")
                     create_delivery(order_id, rider_id)
                 elif choice == "2":
-                    print("Should make an update on an existing delivery")
-                elif choice == "3":
                     print("Should delete an existing delivery")
-                elif choice == "4":
+                elif choice == "3":
                     get_all_completed_deliveries()
-                elif choice == "5":
+                elif choice == "4":
                     get_all_pending_deliveries()
-                elif choice == "6":
+                elif choice == "5":
                     product = input("Enter product name: ")
                     quantity = input("Enter quantity: ")
                     cost = input("Enter cost: ")
@@ -141,8 +143,9 @@ def main():
 
 
 def menu():
-    print("\033[036m\033[1m******************PLEASE SELECT AN OPTION******************\033[0m")
+    print("\033[036m\033[1m******************WELCOME TO DELIVERY MANAGEMENT SYSTEM (DMS)******************\033[0m")
     print("\033[093m 0. Exit the program \033[0m")
+    print("\033[093m******************\033[0m")
     print("\033[093m 1. Manage Supply Chain \033[0m")
     print("\033[093m 2. Order Fulfilment \033[0m")
     print("\033[093m 3. Reports \033[0m")
@@ -151,6 +154,7 @@ def menu():
 def manage_supply_chain():
     print("\033[036m\033[1m******************SUPPLY CHAIN MANAAGEMENT******************\033[0m")
     print("\033[093m 0. Go To Main Menu \033[0m")
+    print("\033[093m******************\033[0m")
     print("\033[093m*********Manage Fleet*********\033[0m")
     print("\033[093m 1. View Your Fleet\033[0m")
     print("\033[093m 2. Add Truck To Your Fleet\033[0m")
@@ -169,22 +173,23 @@ def manage_supply_chain():
     print("\033[093m*********Manage Deliveries*********\033[0m")
     print("\033[093m 13. View All Pending Deliveries\033[0m")
     print("\033[093m 14. View All Completed Deliveries \033[0m")
-    print("\033[093m 15. Update A Delivery\033[0m")
-    print("\033[093m 16. Delete A Delivery\033[0m")
+    # print("\033[093m 15. Update A Delivery\033[0m")
+    print("\033[093m 15. Delete A Delivery\033[0m")
 
 def order_fulfilment():
     print("\033[036m\033[1m******************ORDER FULFILMENT******************\033[0m")
     print("\033[093m 0. Go To Main Menu \033[0m")
+    print("\033[093m******************\033[0m")
     print("\033[093m 1. Create Delivery \033[0m")
-    print("\033[093m 2. Edit Delivery \033[0m")
-    print("\033[093m 3. Delete Delivery \033[0m")
-    print("\033[093m 4. View Past Deliveries \033[0m")
-    print("\033[093m 5. View Pending Deliveries \033[0m")
-    print("\033[093m 6. Create An Order \033[0m")
+    print("\033[093m 2. Delete Delivery \033[0m")
+    print("\033[093m 3. View Past Deliveries \033[0m")
+    print("\033[093m 4. View Pending Deliveries \033[0m")
+    print("\033[093m 5. Create An Order \033[0m")
     
 def reports():
     print("\033[036m\033[1m******************REPORTS******************\033[0m")
     print("\033[093m 0. Go To Main Menu \033[0m")
+    print("\033[093m******************\033[0m")
     print("\033[093m 1. View All Riders \033[0m")
     print("\033[093m 2. View All Trucks \033[0m")
     print("\033[093m 3. View All Orders \033[0m")
