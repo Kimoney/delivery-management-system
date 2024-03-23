@@ -6,6 +6,7 @@ from helpers import (
     delete_order,
     update_rider,
     get_order_by_id,
+    get_order_by_location,
     get_all_trucks,
     add_truck,
     update_truck,
@@ -129,6 +130,9 @@ def main():
                 elif choice == "2":
                     id_ = input("Enter Order Id:> ")
                     get_order_by_id(id_)
+                elif choice == "3":
+                    location = input("Enter Location:> ")
+                    get_order_by_location(location)
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
         # elif choice == "4":

@@ -38,6 +38,12 @@ def get_order_by_id(id_):
     order = dms_db.get_order_by_id(id_)
     print(f"\033[036m<Order No.: {order.id} | Customer: {order.customer_name} | Product :{order.product} | Quantity: {order.quantity} | Amount: {order.cost} | Location: {order.location}> \033[0m")
 
+def get_order_by_location(location):
+    orders = dms_db.get_order_by_location(location)
+
+    for order in orders:
+        print(f"\033[036m<Order No.: {order.id} | Customer: {order.customer_name} | Product :{order.product} | Quantity: {order.quantity} | Amount: {order.cost} | Location: {order.location}> \033[0m")
+
 def get_all_trucks():
     trucks = dms_db.get_all_trucks()
     print(f"\033[032m\033[1m *********Your Fleet At {datetime.now()} ********* \033[0m")

@@ -28,7 +28,7 @@ class DeliveryManagementSystem:
     
     def create_order(self, product, quantity, cost, customer_name, location ):
 
-        order = Order(product=product, quantity=quantity, cost=cost, customer_name=customer_name, location=location)
+        order = Order(product=product, quantity=quantity, cost=cost, customer_name=customer_name, location=location.title())
         self.session.add(order)
         self.session.commit()
         print(f"\033[92m Success!! Order created at {datetime.now()} \033[0m")
@@ -92,6 +92,21 @@ class DeliveryManagementSystem:
                 return order
             else:
                 raise Exception("\033[31m Error: Id Has To Be An Integer \033[0m")
+        except Exception as e:
+            self.session.rollback()
+            print(f"\033[31m Error: {e} \033[0m")
+
+    # 1.1 Order Using Location
+
+    def get_order_by_location(self, location):
+        if not location:
+            print(f"\033[31m Error: Location is Required\033[0m")
+        try:
+            if isinstance(location, str):
+                order = self.session.query(Order).filter_by(location=location.title()).all()
+                return order
+            else:
+                raise Exception("\033[31m Error: Location Has To Be A String\033[0m")
         except Exception as e:
             self.session.rollback()
             print(f"\033[31m Error: {e} \033[0m")
