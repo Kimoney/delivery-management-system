@@ -33,7 +33,7 @@ class DeliveryManagementSystem:
         self.session.commit()
         print(f"\033[92m Success!! Order created at {datetime.now()} \033[0m")
 
-    # 1. Truck
+    # 2. Truck
 
     def add_truck(self, reg_no, truck_capacity, model):
         if not reg_no or not truck_capacity or not model:
@@ -50,7 +50,7 @@ class DeliveryManagementSystem:
             print("\033[31m Error: Reg No. Already Exists. Reg No. Has To Be Unique \033[0m")
             print(f"\033[31m Error: {e} \033[0m")
 
-    # 1. Rider
+    # 3. Rider
 
     def add_rider(self, name, location, truck_id):
         if not name or not location or not truck_id:
@@ -66,7 +66,7 @@ class DeliveryManagementSystem:
             self.session.rollback()
             print(f"\033[31m Error: {e} \033[0m")
 
-    # 1. Delivery
+    # 4. Delivery
 
     def create_delivery(self, order_id, rider_id):
         delivery = Delivery(order_id=order_id, rider_id=rider_id)
@@ -80,17 +80,17 @@ class DeliveryManagementSystem:
     def get_all_orders(self):
         return self.session.query(Order).all()
     
-    # 1. Truck
+    # 2. Truck
         
     def get_all_trucks(self):
         return self.session.query(Truck).all()
     
-    # 1. Rider
+    # 3. Rider
         
     def get_all_riders(self):
         return self.session.query(Rider).all()
     
-    # 1. Delivery (Completed)
+    # 4. Delivery (Completed)
         
     def get_all_completed_deliveries(self):
         return self.session.query(Delivery).all()
@@ -188,7 +188,7 @@ class DeliveryManagementSystem:
             self.session.commit()
             print(f"\033[31m ORDER ID {id_} DELETED SUCCESSFULLY!! \033[0m")
             
-    # 1. Trucks
+    # 2. Trucks
 
     def delete_truck(self, id_):
         if not id_:
@@ -202,7 +202,8 @@ class DeliveryManagementSystem:
             self.session.commit()
             print(f"\033[31m TRUCK ID {id_} DELETED SUCCESSFULLY!! \033[0m")
 
-    # 1. Riders
+    # 3. Riders
+            
     def delete_rider(self, id_):
         if not id_:
             print("\033[31m Error: Rider ID is required. \033[0m")
@@ -215,7 +216,19 @@ class DeliveryManagementSystem:
             self.session.commit()
             print(f"\033[31m RIDER ID {id_} DELETED SUCCESSFULLY!! \033[0m")
             
-    # 1. Deliveries
+    # 4. Deliveries
+            
+    def delete_delivery(self, id_):
+        if not id_:
+            print("\033[31m Error: Delivery ID is required. \033[0m")
+    # Step 1: Query the Delivery to update using its primary key
+        delivery = self.session.query(Delivery).get(id_)
+    # Step 2: If the row exists, delete it
+        if delivery:
+            self.session.delete(delivery)
+    # Step 3: Commit the transaction
+            self.session.commit()
+            print(f"\033[31m DELIVERY ID {id_} DELETED SUCCESSFULLY!! \033[0m")
 
 
 if __name__ == '__main__':

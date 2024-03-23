@@ -14,6 +14,7 @@ from helpers import (
     delete_rider,
     get_all_completed_deliveries,
     get_all_pending_deliveries,
+    delete_delivery,
     create_delivery,
 
 )
@@ -81,13 +82,16 @@ def main():
                     update_order(id_, product, quantity, cost, customer_name, location)
                 elif choice == "12":
                     id_ = input("Enter Order Id:> ")
-                    delete_order(id_)
-                
-                # elif choice == "7":
-                #     get_all_pending_deliveries()
-                # elif choice == "8":
-                #     get_all_completed_deliveries()
-        
+                    delete_order(id_)                
+                elif choice == "13":
+                    get_all_pending_deliveries()
+                elif choice == "14":
+                    get_all_completed_deliveries()
+                elif choice == "15":
+                    pass
+                elif choice == "16":
+                    id_ = input("Enter Delivery Id:> ")
+                    delete_delivery(id_)
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
         elif choice == "2":
@@ -165,7 +169,8 @@ def manage_supply_chain():
     print("\033[093m*********Manage Deliveries*********\033[0m")
     print("\033[093m 13. View All Pending Deliveries\033[0m")
     print("\033[093m 14. View All Completed Deliveries \033[0m")
-    print("\033[093m 15. Delete An Delivery\033[0m")
+    print("\033[093m 15. Update A Delivery\033[0m")
+    print("\033[093m 16. Delete A Delivery\033[0m")
 
 def order_fulfilment():
     print("\033[036m\033[1m******************ORDER FULFILMENT******************\033[0m")
