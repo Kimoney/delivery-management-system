@@ -14,7 +14,6 @@ from helpers import (
     delete_rider,
     get_all_completed_deliveries,
     get_all_pending_deliveries,
-    # update_delivery,
     delete_delivery,
     create_delivery,
 
@@ -88,11 +87,6 @@ def main():
                     get_all_pending_deliveries()
                 elif choice == "14":
                     get_all_completed_deliveries()
-                # elif choice == "15":
-                #     id_ = input("Enter Delivery Id:> ")
-                #     order_id = input("Enter Order Id:> ")
-                #     rider_id = input("Enter Rider Id:> ")
-                #     update_delivery(id_, order_id, rider_id)
                 elif choice == "15":
                     id_ = input("Enter Delivery Id:> ")
                     delete_delivery(id_)
@@ -152,28 +146,27 @@ def menu():
     print("\033[093m 4. Create An Order \033[0m")
 
 def manage_supply_chain():
-    print("\033[036m\033[1m******************SUPPLY CHAIN MANAAGEMENT******************\033[0m")
+    print("\033[036m\033[1m******************SUPPLY CHAIN MANAGEMENT******************\033[0m")
     print("\033[093m 0. Go To Main Menu \033[0m")
     print("\033[093m******************\033[0m")
-    print("\033[093m*********Manage Fleet*********\033[0m")
+    print("\033[33m\033[1m*********MANAGE FLEET*********\033[0m")
     print("\033[093m 1. View Your Fleet\033[0m")
     print("\033[093m 2. Add Truck To Your Fleet\033[0m")
     print("\033[093m 3. Edit A Truck\033[0m")
     print("\033[093m 4. Delete A Truck\033[0m")
-    print("\033[093m*********Manage Riders*********\033[0m")
+    print("\033[33m\033[1m*********MANAGE RIDERS*********\033[0m")
     print("\033[093m 5. View All Riders\033[0m")
     print("\033[093m 6. Add A New Rider\033[0m")
     print("\033[093m 7. Reassign A Rider\033[0m")
     print("\033[093m 8. Delete A Rider\033[0m")
-    print("\033[093m*********Manage Orders*********\033[0m")
+    print("\033[33m\033[1m*********MANAGE ORDERS*********\033[0m")
     print("\033[093m 9. View All Orders\033[0m")
     print("\033[093m 10. Create An Order \033[0m")
     print("\033[093m 11. Edit An Order\033[0m")
     print("\033[093m 12. Delete An Order\033[0m")
-    print("\033[093m*********Manage Deliveries*********\033[0m")
+    print("\033[33m\033[1m*********MANAGE DELIVERIES*********\033[0m")
     print("\033[093m 13. View All Pending Deliveries\033[0m")
     print("\033[093m 14. View All Completed Deliveries \033[0m")
-    # print("\033[093m 15. Update A Delivery\033[0m")
     print("\033[093m 15. Delete A Delivery\033[0m")
 
 def order_fulfilment():
@@ -190,16 +183,31 @@ def reports():
     print("\033[036m\033[1m******************REPORTS******************\033[0m")
     print("\033[093m 0. Go To Main Menu \033[0m")
     print("\033[093m******************\033[0m")
-    print("\033[093m 1. View All Riders \033[0m")
-    print("\033[093m 2. View All Trucks \033[0m")
-    print("\033[093m 3. View All Orders \033[0m")
-    print("\033[093m 4. View All Deliveries \033[0m")
-    print("\033[093m 5. View All Pending Deliveries \033[0m")
-    print("\033[093m 6. View All Pending Deliveries By Location\033[0m")
-    print("\033[093m 7. View All Pending Deliveries With No Rider Assigned\033[0m")
-    print("\033[093m 8. View A Rider's Deliveries \033[0m")
-    print("\033[093m 9. View A Rider's Pending Deliveries \033[0m")
-    print("\033[093m 10. Create An Order \033[0m")
+    print("\033[33m\033[1m*********ORDERS*********\033[0m")
+    print("\033[093m 1. View All Orders\033[0m")
+    print("\033[093m 2. View Order By Id\033[0m")
+    print("\033[093m 3. View Orders By Location\033[0m")
+    print("\033[093m 4. View Undelivered Orders\033[0m")
+    print("\033[33m\033[1m*********FLEET*********\033[0m")
+    print("\033[093m 5. View The Whole Fleet\033[0m")
+    print("\033[093m 6. View Trucks By Id\033[0m")
+    print("\033[093m 7. View Trucks By Reg. No.\033[0m")
+    print("\033[093m 8. View Trucks By Model\033[0m")
+    print("\033[093m 9. View All Assigned Trucks\033[0m")
+    print("\033[093m 10. View All Unassigned Trucks\033[0m")
+    print("\033[33m\033[1m*********RIDERS*********\033[0m")
+    print("\033[093m 11. View All Riders\033[0m")
+    print("\033[093m 12. View Riders By Id\033[0m")
+    print("\033[093m 13. View Riders By Location\033[0m")
+    print("\033[093m 14. View Rider By Name\033[0m")
+    print("\033[093m 15. View Rider's Ccompleted Deliveries\033[0m")
+    print("\033[093m 16. View Rider's Pending Deliveries\033[0m")
+    print("\033[33m\033[1m*********DELIVERIES*********\033[0m")
+    print("\033[093m 17. View All Completed Deliveries\033[0m")
+    print("\033[093m 18. View All Pending Deliveries\033[0m")
+    print("\033[093m 19. View Delivery By Id\033[0m")
+    print("\033[093m 20. Check Whether Order Has Been Delivered\033[0m")   
+
 
 if __name__ == "__main__":
     main()
