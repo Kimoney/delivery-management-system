@@ -83,6 +83,18 @@ def get_truck_by_model(model):
             print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
     else:
         return print(f"\033[31m Truck {model} Doesn't Exist!!!\033[0m")
+    
+def get_assigned_trucks():
+    trucks = dms_db.get_assigned_trucks()
+    print(f"\033[032m\033[1m *********Assigned Trucks As At {datetime.now()} ********* \033[0m")
+    for truck in trucks:
+        print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
+
+def get_all_unassigned_trucks():
+    trucks = dms_db.get_all_unassigned_trucks()
+    print(f"\033[032m\033[1m *********Unassigned Trucks As At {datetime.now()} ********* \033[0m")
+    for truck in trucks:
+        print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
 
 def get_all_riders():
     riders = dms_db.get_all_riders()

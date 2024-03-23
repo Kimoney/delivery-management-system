@@ -164,6 +164,23 @@ class DeliveryManagementSystem:
             self.session.rollback()
             print(f"\033[31m Error: {e} \033[0m")
     
+    # 2.3 All Trucks Assigned To Riders
+            
+    def get_assigned_trucks(self):
+        # Subquery to get IDs of trucks that have corresponding records in riders table
+        subquery = self.session.query(Rider.truck_id).distinct()
+        print(subquery)
+        # Retrieve trucks whose IDs are in the subquery
+        return self.session.query(Truck).filter(Truck.id.in_(subquery)).all()
+            
+    # 2.5 All Unassigned Trucks
+       
+    def get_all_unassigned_trucks(self):
+        # Subquery to get IDs of trucks that have corresponding records in riders table
+        subquery = self.session.query(Rider.truck_id).distinct()
+        # Retrieve trucks whose IDs are not in the subquery
+        return self.session.query(Truck).filter(not_(Truck.id.in_(subquery))).all()
+    
     # 3. Rider
         
     def get_all_riders(self):

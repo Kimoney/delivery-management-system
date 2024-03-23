@@ -13,6 +13,8 @@ from helpers import (
     get_truck_by_id,
     get_truck_by_reg_no,
     get_truck_by_model,
+    get_assigned_trucks,
+    get_all_unassigned_trucks,
     delete_truck,
     get_all_riders,
     add_rider,
@@ -149,6 +151,10 @@ def main():
                 elif choice == "8":
                     model = input("Enter Model:> ")
                     get_truck_by_model(model)
+                elif choice == "9":
+                    get_assigned_trucks()
+                elif choice == "10":
+                    get_all_unassigned_trucks()
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
         # elif choice == "4":
