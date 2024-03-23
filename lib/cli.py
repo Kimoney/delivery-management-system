@@ -1,18 +1,20 @@
 from helpers import (
     exit_program,
-    create_order,
-    add_truck,
-    add_rider,
-    create_delivery,
     get_all_orders,
-    get_all_trucks,
-    get_all_riders,
-    get_all_completed_deliveries,
-    get_all_pending_deliveries,
+    create_order,
+    update_order,
     update_rider,
+    get_all_trucks,
+    add_truck,
     update_truck,
     delete_truck,
-    delete_rider
+    get_all_riders,
+    add_rider,
+    delete_rider,
+    get_all_completed_deliveries,
+    get_all_pending_deliveries,
+    create_delivery,
+
 )
 
 
@@ -68,6 +70,14 @@ def main():
                     customer_name = input("Enter customer name: ")
                     location = input("Enter location: ")
                     create_order(product, quantity, cost, customer_name, location)
+                elif choice == "11":
+                    id_ = input("Enter Order Id:> ")
+                    product = input("Enter Product:> ")
+                    quantity = input("Enter Quantity:> ")
+                    cost = input("Enter Cost:> ")
+                    customer_name = input("Enter Customer's Name:> ")
+                    location = input("Enter Location:> ")
+                    update_order(id_, product, quantity, cost, customer_name, location)
                 # elif choice == "7":
                 #     get_all_pending_deliveries()
                 # elif choice == "8":

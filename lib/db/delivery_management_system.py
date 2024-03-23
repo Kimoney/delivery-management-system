@@ -106,10 +106,33 @@ class DeliveryManagementSystem:
 # Update
     # 1. Orders
 
+    def update_order(self, id_, product, quantity, cost, customer_name, location):
+        if not id_ or not product or not quantity or not cost or not customer_name or not location:
+            print("\033[31m Error: ORDER ID, PRODUCT, QUANTITY, COST, CUSTOMER NAME, LOCATION are all required.\033[0m")
+
+# Step 1: Query the Order to update using its primary key
+        order = self.session.query(Order).get(id_)
+
+# Step 2: Modify the attributes of the queried rider
+        try:
+            order.product = product
+            order.quantity = quantity
+            order.cost = cost
+            order.customer_name = customer_name
+            order.location = location
+            self.session.commit()
+            print(f"\033[92m Success!! Order Updated{datetime.now()} \033[0m")
+        except Exception as e:
+            self.session.rollback()
+            print("\033[31m Error: ORDER ID, PRODUCT, QUANTITY, COST, CUSTOMER NAME, LOCATION are all required.\033[0m")
+            print(f"\033[31m Error: {e} \033[0m")
+
+
+
     # 2. Trucks
 
     def update_truck(self, id_, reg_no, truck_capacity, model):
-        if not id_:
+        if not id_ or not reg_no or not truck_capacity or not model:
             print("\033[31m Error: TRUCK ID, REG No.(Has To Be Unique), TRUCK CAPACITY are all required. \033[0m")
 
 # Step 1: Query the Truck to update using its primary key
@@ -131,7 +154,7 @@ class DeliveryManagementSystem:
     # 3. Riders
 
     def update_rider(self, id_, location, truck_id):
-        if not id_:
+        if not id_ or not location or not truck_id:
             print("\033[31m Error: Rider id is required and an unassigned location & Truck \033[0m")
 
 # Step 1: Query the rider to update using its primary key
