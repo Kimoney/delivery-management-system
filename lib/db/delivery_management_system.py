@@ -167,6 +167,17 @@ class DeliveryManagementSystem:
             print(f"\033[31m TRUCK ID {id_} DELETED SUCCESSFULLY!! \033[0m")
 
     # 1. Riders
+    def delete_rider(self, id_):
+        if not id_:
+            print("\033[31m Error: Rider ID is required. \033[0m")
+    # Step 1: Query the Truck to update using its primary key
+        rider = self.session.query(Rider).get(id_)
+    # Step 2: If the row exists, delete it
+        if rider:
+            self.session.delete(rider)
+    # Step 3: Commit the transaction
+            self.session.commit()
+            print(f"\033[31m RIDER ID {id_} DELETED SUCCESSFULLY!! \033[0m")
             
     # 1. Deliveries
 

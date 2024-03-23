@@ -81,6 +81,9 @@ def update_truck(id_, reg_no, truck_capacity, model):
 def delete_truck(id_):
     dms_db.delete_truck(id_)
 
+def delete_rider(id_):
+    dms_db.delete_rider(id_)
+
 def exit_program():
     print("\033[093m Sad To See You Leave :-( See You Soon With More Orders!\033[0m")
     exit()

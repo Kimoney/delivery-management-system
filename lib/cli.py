@@ -11,7 +11,8 @@ from helpers import (
     get_all_pending_deliveries,
     update_rider,
     update_truck,
-    delete_truck
+    delete_truck,
+    delete_rider
 )
 
 
@@ -43,32 +44,35 @@ def main():
                 elif choice == "4":
                     id_ = input("Enter Truck Id:> ")
                     delete_truck(id_)
-                # elif choice == "2":
-                #     name = input("Enter rider's name: ")
-                #     location = input("Enter rider's route location: ")
-                #     truck_id = input("Enter rider's truck id: ")
-                #     add_rider(name, location, truck_id)
-                # elif choice == "3":
-                #     # Reassign A Rider's Location
-                #     id_ = input("Enter Rider's id: > ")
-                #     location = input("Enter New Route: > ")
-                #     truck_id = input("Enter Truck id: > ")
-                #     update_rider(id_, location, truck_id)
-                # elif choice == "5":
-                #     get_all_riders()
-                # elif choice == "6":
-                #     get_all_orders()
+                elif choice == "5":
+                    get_all_riders()
+                elif choice == "6":
+                    name = input("Enter rider's name: ")
+                    location = input("Enter rider's route location: ")
+                    truck_id = input("Enter rider's truck id: ")
+                    add_rider(name, location, truck_id)
+                elif choice == "7":
+                    id_ = input("Enter Rider's id: > ")
+                    location = input("Enter New Route: > ")
+                    truck_id = input("Enter Truck id: > ")
+                    update_rider(id_, location, truck_id)
+                elif choice == "8":
+                    id_ = input("Enter Rider's Id:> ")
+                    delete_rider(id_)
+                elif choice == "9":
+                    get_all_orders()
+                elif choice == "10":
+                    product = input("Enter product name: ")
+                    quantity = input("Enter quantity: ")
+                    cost = input("Enter cost: ")
+                    customer_name = input("Enter customer name: ")
+                    location = input("Enter location: ")
+                    create_order(product, quantity, cost, customer_name, location)
                 # elif choice == "7":
                 #     get_all_pending_deliveries()
                 # elif choice == "8":
                 #     get_all_completed_deliveries()
-                # elif choice == "9":
-                #     product = input("Enter product name: ")
-                #     quantity = input("Enter quantity: ")
-                #     cost = input("Enter cost: ")
-                #     customer_name = input("Enter customer name: ")
-                #     location = input("Enter location: ")
-                #     create_order(product, quantity, cost, customer_name, location)
+        
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
         elif choice == "2":
@@ -137,7 +141,7 @@ def manage_supply_chain():
     print("\033[093m 5. View All Riders\033[0m")
     print("\033[093m 6. Add A New Rider\033[0m")
     print("\033[093m 7. Reassign A Rider\033[0m")
-    print("\033[093m 8. Delete A Truck\033[0m")
+    print("\033[093m 8. Delete A Rider\033[0m")
     print("\033[093m*********Manage Orders*********\033[0m")
     print("\033[093m 9. View All Orders\033[0m")
     print("\033[093m 10. Create An Order \033[0m")
