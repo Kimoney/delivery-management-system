@@ -123,15 +123,17 @@ def main():
                 choice = input("> ")
                 if choice == "0":
                     main()
+                elif choice == "1":
+                    get_all_orders()
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
-        elif choice == "4":
-            product = input("Enter product name: ")
-            quantity = input("Enter quantity: ")
-            cost = input("Enter cost: ")
-            customer_name = input("Enter customer name: ")
-            location = input("Enter location: ")
-            create_order(product, quantity, cost, customer_name, location)
+        # elif choice == "4":
+        #     product = input("Enter product name: ")
+        #     quantity = input("Enter quantity: ")
+        #     cost = input("Enter cost: ")
+        #     customer_name = input("Enter customer name: ")
+        #     location = input("Enter location: ")
+        #     create_order(product, quantity, cost, customer_name, location)
         else:
             print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
 
