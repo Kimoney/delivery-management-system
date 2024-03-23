@@ -36,13 +36,20 @@ def get_all_orders():
 
 def get_order_by_id(id_):
     order = dms_db.get_order_by_id(id_)
-    print(f"\033[036m<Order No.: {order.id} | Customer: {order.customer_name} | Product :{order.product} | Quantity: {order.quantity} | Amount: {order.cost} | Location: {order.location}> \033[0m")
+    if order:
+        print(f"\033[036m<Order No.: {order.id} | Customer: {order.customer_name} | Product :{order.product} | Quantity: {order.quantity} | Amount: {order.cost} | Location: {order.location}> \033[0m")
+    else:
+        return print(f"\033[31m Order With Id {id_} Doesn't Exist!!!\033[0m")
 
 def get_order_by_location(location):
     orders = dms_db.get_order_by_location(location)
 
-    for order in orders:
-        print(f"\033[036m<Order No.: {order.id} | Customer: {order.customer_name} | Product :{order.product} | Quantity: {order.quantity} | Amount: {order.cost} | Location: {order.location}> \033[0m")
+    if orders:
+
+        for order in orders:
+            print(f"\033[036m<Order No.: {order.id} | Customer: {order.customer_name} | Product :{order.product} | Quantity: {order.quantity} | Amount: {order.cost} | Location: {order.location}> \033[0m")
+    else:
+        return print(f"\033[31m No Orders Destined For {location} Found!!!\033[0m")
 
 def get_all_trucks():
     trucks = dms_db.get_all_trucks()
@@ -53,8 +60,11 @@ def get_all_trucks():
 
 def get_truck_by_id(id_):
     truck = dms_db.get_truck_by_id(id_)
-    print(f"\033[032m\033[1m ********* Truck {id_} Details on {datetime.now()} ********* \033[0m")
-    print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
+    if truck:
+        print(f"\033[032m\033[1m ********* Truck {id_} Details on {datetime.now()} ********* \033[0m")
+        print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
+    else:
+        return print(f"\033[31m Truck With Id {id_} Doesn't Exist!!!\033[0m")
 
 def get_all_riders():
     riders = dms_db.get_all_riders()
