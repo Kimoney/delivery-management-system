@@ -149,6 +149,21 @@ class DeliveryManagementSystem:
             self.session.rollback()
             print(f"\033[31m Error: {e} \033[0m")
     
+    # 2.2 Truck(Using Model)
+
+    def get_truck_by_model(self, model):
+        if not model:
+            print(f"\033[31m Error: Truck Model is Required\033[0m")
+        try:
+            if isinstance(model, str):
+                truck = self.session.query(Truck).filter_by(model=model.title()).all()
+                return truck
+            else:
+                raise Exception("\033[31m Error: Model Has To Be A String\033[0m")
+        except Exception as e:
+            self.session.rollback()
+            print(f"\033[31m Error: {e} \033[0m")
+    
     # 3. Rider
         
     def get_all_riders(self):

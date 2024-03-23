@@ -23,7 +23,8 @@ def add_rider(name, location, truck_id):
 
 def create_delivery(order_id, rider_id):
     dms_db.create_delivery(order_id, rider_id)
-    print(f"\033[093m Success!! Delivery made at {datetime.now()}.\033[0m")
+    order = dms_db.get_order_by_id(order_id)
+    print(f"\033[093m Delivery Confirmed! {order.customer_name} has recieved {order.quantity} {order.product} at {datetime.now()}. Amount: {order.cost} \033[0m")
 
 # GET ALL FUNCTIONS
 
@@ -32,7 +33,7 @@ def get_all_orders():
     print(f"\033[032m\033[1m *********Orders As {datetime.now()} ********* \033[0m")
 
     for order in orders:
-        print(f"\033[036m<Order No.: {order.id} | Customer: {order.customer_name} | Product :{order.product} | Quantity: {order.quantity} | Amount: {order.cost} | Location: {order.location}> \033[0m")
+        print(f"\033[036m<Order No.: {order.id} | Customer: {order.customer_name} | Product :{order.product} | Quantity: {order.quantity} | Amount: KES {order.cost} | Location: {order.location}> \033[0m")
 
 def get_order_by_id(id_):
     order = dms_db.get_order_by_id(id_)
@@ -73,6 +74,15 @@ def get_truck_by_reg_no(reg_no):
         print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
     else:
         return print(f"\033[31m Truck {reg_no} Doesn't Exist!!!\033[0m")
+    
+def get_truck_by_model(model):
+    trucks = dms_db.get_truck_by_model(model)
+    if trucks:
+        print(f"\033[032m\033[1m *********{model} Trucks In Your Fleet As At {datetime.now()} ********* \033[0m")
+        for truck in trucks:
+            print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
+    else:
+        return print(f"\033[31m Truck {model} Doesn't Exist!!!\033[0m")
 
 def get_all_riders():
     riders = dms_db.get_all_riders()

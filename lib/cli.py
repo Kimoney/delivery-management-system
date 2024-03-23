@@ -12,6 +12,7 @@ from helpers import (
     update_truck,
     get_truck_by_id,
     get_truck_by_reg_no,
+    get_truck_by_model,
     delete_truck,
     get_all_riders,
     add_rider,
@@ -143,8 +144,11 @@ def main():
                     id_ = input("Enter Order Id:> ")
                     get_truck_by_id(id_)
                 elif choice == "7":
-                    reg_no = input("Enter Reg. N0.:> ")
+                    reg_no = input("Enter Reg. No.:> ")
                     get_truck_by_reg_no(reg_no)
+                elif choice == "8":
+                    model = input("Enter Model:> ")
+                    get_truck_by_model(model)
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
         # elif choice == "4":
