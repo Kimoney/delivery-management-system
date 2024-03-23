@@ -3,6 +3,7 @@ from helpers import (
     get_all_orders,
     create_order,
     update_order,
+    delete_order,
     update_rider,
     get_all_trucks,
     add_truck,
@@ -78,6 +79,10 @@ def main():
                     customer_name = input("Enter Customer's Name:> ")
                     location = input("Enter Location:> ")
                     update_order(id_, product, quantity, cost, customer_name, location)
+                elif choice == "12":
+                    id_ = input("Enter Order Id:> ")
+                    delete_order(id_)
+                
                 # elif choice == "7":
                 #     get_all_pending_deliveries()
                 # elif choice == "8":

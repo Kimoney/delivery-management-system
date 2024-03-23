@@ -78,6 +78,9 @@ def update_rider(id_, location, truck_id):
 #     dms_db.update_rider(id_, location, truck_id)
 #     print(f"\033[093m Success!! Rider Assignment Completed at {datetime.now()}.\033[0m")
     
+def delete_order(id_):
+    dms_db.delete_order(id_)
+    
 def delete_truck(id_):
     dms_db.delete_truck(id_)
 
