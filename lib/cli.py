@@ -4,7 +4,6 @@ from helpers import (
     create_order,
     update_order,
     delete_order,
-    update_rider,
     get_order_by_id,
     get_order_by_location,
     get_all_trucks,
@@ -17,6 +16,9 @@ from helpers import (
     get_all_unassigned_trucks,
     delete_truck,
     get_all_riders,
+    get_rider_by_id,
+    get_rider_by_location,
+    update_rider,
     add_rider,
     delete_rider,
     get_all_completed_deliveries,
@@ -155,6 +157,14 @@ def main():
                     get_assigned_trucks()
                 elif choice == "10":
                     get_all_unassigned_trucks()
+                elif choice == "11":
+                    get_all_riders()
+                elif choice == "12":
+                    id_ = input("Enter Rider's Id:> ")
+                    get_rider_by_id(id_)
+                elif choice == "13":
+                    location = input("Enter Rider's Location:> ")
+                    get_rider_by_location(location)
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
         # elif choice == "4":
@@ -231,14 +241,13 @@ def reports():
     print("\033[093m 11. View All Riders\033[0m")
     print("\033[093m 12. View Riders By Id\033[0m")
     print("\033[093m 13. View Riders By Location\033[0m")
-    print("\033[093m 14. View Rider By Name\033[0m")
-    print("\033[093m 15. View Rider's Ccompleted Deliveries\033[0m")
-    print("\033[093m 16. View Rider's Pending Deliveries\033[0m")
+    print("\033[093m 14. View Rider's Completed Deliveries\033[0m")
+    print("\033[093m 15. View Rider's Pending Deliveries\033[0m")
     print("\033[33m\033[1m*********DELIVERIES*********\033[0m")
-    print("\033[093m 17. View All Completed Deliveries\033[0m")
-    print("\033[093m 18. View All Pending Deliveries\033[0m")
-    print("\033[093m 19. View Delivery By Id\033[0m")
-    print("\033[093m 20. Check Whether Order Has Been Delivered\033[0m")   
+    print("\033[093m 16. View All Completed Deliveries\033[0m")
+    print("\033[093m 17. View All Pending Deliveries\033[0m")
+    print("\033[093m 18. View Delivery By Id\033[0m")
+    print("\033[093m 19. Check An Order's Delivery Status\033[0m")   
 
 
 if __name__ == "__main__":

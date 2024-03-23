@@ -22,9 +22,14 @@ def add_rider(name, location, truck_id):
     print(f"\033[093m Success!! Rider {name} Added.\033[0m")
 
 def create_delivery(order_id, rider_id):
-    dms_db.create_delivery(order_id, rider_id)
     order = dms_db.get_order_by_id(order_id)
-    print(f"\033[093m Delivery Confirmed! {order.customer_name} has recieved {order.quantity} {order.product} at {datetime.now()}. Amount: {order.cost} \033[0m")
+    rider = dms_db.get_rider_by_id(rider_id)
+    if order.location.title() == rider.location.title():
+        dms_db.create_delivery(order_id, rider_id)
+        order = dms_db.get_order_by_id(order_id)
+        print(f"\033[093m Delivery Confirmed! {order.customer_name} has recieved {order.quantity} {order.product} at {datetime.now()}. Amount: {order.cost} \033[0m")
+    else:
+        print("\033[31m Error: You Can't Deliver Orders Not Designated For Your Assigned Location.\nContact Admin If You Have To Deliver The Order! \033[0m")
 
 # GET ALL FUNCTIONS
 
@@ -96,12 +101,30 @@ def get_all_unassigned_trucks():
     for truck in trucks:
         print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
 
+# ================================RIDERS================================
+        
 def get_all_riders():
     riders = dms_db.get_all_riders()
     print(f"\033[032m\033[1m *********Your Riders As At {datetime.now()} ********* \033[0m")
 
     for rider in riders:
         print(f"\033[036m<Rider Id: {rider.id} | Assigned Truck: {rider.truck_id} | Location: {rider.location} | Name: {rider.name}> \033[0m")
+
+def get_rider_by_id(id_):
+    rider = dms_db.get_rider_by_id(id_)
+    if rider:
+        print(f"\033[032m\033[1m ********* Rider {id_} Details as at {datetime.now()} ********* \033[0m")
+        print(f"\033[036m<Rider Id: {rider.id} | Assigned Truck: {rider.truck_id} | Location: {rider.location} | Name: {rider.name}> \033[0m")
+    else:
+        return print(f"\033[31m Rider With Id {id_} Doesn't Exist!!!\033[0m")
+
+def get_rider_by_location(location):
+    rider = dms_db.get_rider_by_location(location)
+    if rider:
+        print(f"\033[032m\033[1m *********{location} Rider's Details as at {datetime.now()} ********* \033[0m")
+        print(f"\033[036m<Rider Id: {rider.id} | Assigned Truck: {rider.truck_id} | Location: {rider.location} | Name: {rider.name}> \033[0m")
+    else:
+        return print(f"\033[31m No Riders In {location}.\nYou, Can Assign One Using the `Manage Supply Chain` option!!\033[0m")
 
 def get_all_completed_deliveries():
     deliveries = dms_db.get_all_completed_deliveries()

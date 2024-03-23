@@ -56,7 +56,7 @@ class DeliveryManagementSystem:
         if not name or not location or not truck_id:
             print("\033[31m Error: Name, Location and Truck ID are required \033[0m")
 
-        rider = Rider(name=name, location=location, truck_id=truck_id)
+        rider = Rider(name=name, location=location.title(), truck_id=truck_id)
 
         try:
             self.session.add(rider)
@@ -69,10 +69,18 @@ class DeliveryManagementSystem:
     # 4. Delivery
 
     def create_delivery(self, order_id, rider_id):
+        if not order_id or not rider_id:
+            print("\033[31m Error: Order Id and Rider Id are required \033[0m")
+            
         delivery = Delivery(order_id=order_id, rider_id=rider_id)
-        self.session.add(delivery)
-        self.session.commit()
-        print(f"\033[92m Success!! Delivery made at {datetime.now()} \033[0m")
+
+        try:
+            self.session.add(delivery)
+            self.session.commit()
+            print(f"\033[92m Success!! Delivery made at {datetime.now()} \033[0m")
+        except Exception as e:
+            self.session.rollback()
+            print(f"\033[31m Error: {e} \033[0m")
 
 # GET ALL
     # 1.0 Orders(All)
@@ -181,10 +189,41 @@ class DeliveryManagementSystem:
         # Retrieve trucks whose IDs are not in the subquery
         return self.session.query(Truck).filter(not_(Truck.id.in_(subquery))).all()
     
-    # 3. Rider
+    # 3.0 Rider
         
     def get_all_riders(self):
         return self.session.query(Rider).all()
+    
+    # 3.1 Rider(Using ID)
+
+    def get_rider_by_id(self, id_):
+        if not id_:
+            print(f"\033[31m Error: Rider Id is Required\033[0m")
+        try:
+            id_ = int(id_)
+            if isinstance(id_, int):
+                rider = self.session.query(Rider).filter_by(id=id_).one()
+                return rider
+            else:
+                raise Exception("\033[31m Error: Id Has To Be An Integer \033[0m")
+        except Exception as e:
+            self.session.rollback()
+            print(f"\033[31m Error: {e} \033[0m")
+
+    # 3.1 Rider(Using Location)
+            
+    def get_rider_by_location(self, location):
+        if not location:
+            print(f"\033[31m Error: Rider Id is Required\033[0m")
+        try:
+            if isinstance(location, str):
+                rider = self.session.query(Rider).filter_by(location=location.title()).one()
+                return rider
+            else:
+                raise Exception("\033[31m Error: Id Has To Be An Integer \033[0m")
+        except Exception as e:
+            self.session.rollback()
+            print(f"\033[31m Error: {e} \033[0m")
     
     # 4. Delivery (Completed)
         
