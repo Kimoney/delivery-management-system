@@ -10,6 +10,7 @@ from helpers import (
     get_all_trucks,
     add_truck,
     update_truck,
+    get_truck_by_id,
     delete_truck,
     get_all_riders,
     add_rider,
@@ -137,6 +138,9 @@ def main():
                     get_all_pending_deliveries()
                 elif choice == "5":
                     get_all_trucks()
+                elif choice == "6":
+                    id_ = input("Enter Order Id:> ")
+                    get_truck_by_id(id_)
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
         # elif choice == "4":

@@ -51,6 +51,11 @@ def get_all_trucks():
     for truck in trucks:
         print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
 
+def get_truck_by_id(id_):
+    truck = dms_db.get_truck_by_id(id_)
+    print(f"\033[032m\033[1m ********* Truck {id_} Details on {datetime.now()} ********* \033[0m")
+    print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
+
 def get_all_riders():
     riders = dms_db.get_all_riders()
     print(f"\033[032m\033[1m *********Your Riders As At {datetime.now()} ********* \033[0m")

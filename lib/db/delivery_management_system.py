@@ -39,7 +39,7 @@ class DeliveryManagementSystem:
         if not reg_no or not truck_capacity or not model:
             print("\033[31m Error: Reg. No, Truck Capacity and Model are required \033[0m")
 
-        truck = Truck(reg_no=reg_no, truck_capacity=truck_capacity, model=model)
+        truck = Truck(reg_no=reg_no.upper(), truck_capacity=truck_capacity, model=model.title())
 
         try:
             self.session.add(truck)
@@ -80,7 +80,7 @@ class DeliveryManagementSystem:
     def get_all_orders(self):
         return self.session.query(Order).all()
     
-    # 1.1 Order Using ID
+    # 1.1 Order(Using ID)
 
     def get_order_by_id(self, id_):
         if not id_:
@@ -96,7 +96,7 @@ class DeliveryManagementSystem:
             self.session.rollback()
             print(f"\033[31m Error: {e} \033[0m")
 
-    # 1.1 Order Using Location
+    # 1.2 Order(Using Location)
 
     def get_order_by_location(self, location):
         if not location:
@@ -112,9 +112,26 @@ class DeliveryManagementSystem:
             print(f"\033[31m Error: {e} \033[0m")
     
     # 2. Truck
+    # 2.0 Trucks(All)
         
     def get_all_trucks(self):
         return self.session.query(Truck).all()
+    
+    # 2.1 Truck(Using ID)
+
+    def get_truck_by_id(self, id_):
+        if not id_:
+            print(f"\033[31m Error: Truck Id is Required\033[0m")
+        try:
+            id_ = int(id_)
+            if isinstance(id_, int):
+                order = self.session.query(Truck).filter_by(id=id_).one()
+                return order
+            else:
+                raise Exception("\033[31m Error: Id Has To Be An Integer \033[0m")
+        except Exception as e:
+            self.session.rollback()
+            print(f"\033[31m Error: {e} \033[0m")
     
     # 3. Rider
         
