@@ -135,6 +135,8 @@ def main():
                     get_order_by_location(location)
                 elif choice == "4":
                     get_all_pending_deliveries()
+                elif choice == "5":
+                    get_all_trucks()
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
         # elif choice == "4":
