@@ -133,6 +133,8 @@ def main():
                 elif choice == "3":
                     location = input("Enter Location:> ")
                     get_order_by_location(location)
+                elif choice == "4":
+                    get_all_pending_deliveries()
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
         # elif choice == "4":
