@@ -75,10 +75,26 @@ class DeliveryManagementSystem:
         print(f"\033[92m Success!! Delivery made at {datetime.now()} \033[0m")
 
 # GET ALL
-    # 1. Orders
+    # 1.0 Orders(All)
         
     def get_all_orders(self):
         return self.session.query(Order).all()
+    
+    # 1.1 Order Using ID
+
+    def get_order_by_id(self, id_):
+        if not id_:
+            print(f"\033[31m Error: Order Id is Required\033[0m")
+        try:
+            id_ = int(id_)
+            if isinstance(id_, int):
+                order = self.session.query(Order).filter_by(id=id_).one()
+                return order
+            else:
+                raise Exception("\033[31m Error: Id Has To Be An Integer \033[0m")
+        except Exception as e:
+            self.session.rollback()
+            print(f"\033[31m Error: {e} \033[0m")
     
     # 2. Truck
         

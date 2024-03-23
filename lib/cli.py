@@ -5,6 +5,7 @@ from helpers import (
     update_order,
     delete_order,
     update_rider,
+    get_order_by_id,
     get_all_trucks,
     add_truck,
     update_truck,
@@ -125,6 +126,9 @@ def main():
                     main()
                 elif choice == "1":
                     get_all_orders()
+                elif choice == "2":
+                    id_ = input("Enter Order Id:> ")
+                    get_order_by_id(id_)
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
         # elif choice == "4":
