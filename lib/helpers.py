@@ -66,6 +66,14 @@ def get_truck_by_id(id_):
     else:
         return print(f"\033[31m Truck With Id {id_} Doesn't Exist!!!\033[0m")
 
+def get_truck_by_reg_no(reg_no):
+    truck = dms_db.get_truck_by_reg_no(reg_no)
+    if truck:
+        print(f"\033[032m\033[1m ********* Truck {reg_no}'s Details on {datetime.now()} ********* \033[0m")
+        print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
+    else:
+        return print(f"\033[31m Truck {reg_no} Doesn't Exist!!!\033[0m")
+
 def get_all_riders():
     riders = dms_db.get_all_riders()
     print(f"\033[032m\033[1m *********Your Riders As At {datetime.now()} ********* \033[0m")

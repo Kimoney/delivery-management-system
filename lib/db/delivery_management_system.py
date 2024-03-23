@@ -125,26 +125,26 @@ class DeliveryManagementSystem:
         try:
             id_ = int(id_)
             if isinstance(id_, int):
-                order = self.session.query(Truck).filter_by(id=id_).one()
-                return order
+                truck = self.session.query(Truck).filter_by(id=id_).one()
+                return truck
             else:
                 raise Exception("\033[31m Error: Id Has To Be An Integer \033[0m")
         except Exception as e:
             self.session.rollback()
             print(f"\033[31m Error: {e} \033[0m")
 
+    
     # 2.2 Truck(Using Reg. No.)
 
-    def get_truck_by_id(self, id_):
-        if not id_:
-            print(f"\033[31m Error: Truck Id is Required\033[0m")
+    def get_truck_by_reg_no(self, reg_no):
+        if not reg_no:
+            print(f"\033[31m Error: Truck Reg No. is Required\033[0m")
         try:
-            id_ = int(id_)
-            if isinstance(id_, int):
-                order = self.session.query(Truck).filter_by(id=id_).one()
-                return order
+            if isinstance(reg_no, str):
+                truck = self.session.query(Truck).filter_by(reg_no=reg_no.upper()).one()
+                return truck
             else:
-                raise Exception("\033[31m Error: Id Has To Be An Integer \033[0m")
+                raise Exception("\033[31m Error: Reg. No. Has To Be A String\033[0m")
         except Exception as e:
             self.session.rollback()
             print(f"\033[31m Error: {e} \033[0m")
