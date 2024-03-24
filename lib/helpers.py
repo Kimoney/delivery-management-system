@@ -126,6 +126,26 @@ def get_rider_by_location(location):
     else:
         return print(f"\033[31m No Riders In {location}.\nYou, Can Assign One Using the `Manage Supply Chain` option!!\033[0m")
 
+# View Rider's Completed Deliveries
+    
+def a_riders_completed_deliveries(id_):
+    deliveries = dms_db.get_all_completed_deliveries()
+    id_ = int(id_)
+    if deliveries:
+        # print(f"\033[032m\033[1m *********{dms_db.get_rider_by_id(id_).name}'s Deliveries As At {datetime.now()}********* \033[0m")
+        for delivery in deliveries:
+            if delivery.rider_id == id_:
+                print(f"\033[036m<Delivery Id: {delivery.id} | Order: {delivery.order_id} | Completed At: {delivery.time} | By Rider {delivery.rider_id} > \033[0m")
+        else:
+            print(f"{dms_db.get_rider_by_id(id_).name} has not made any deliveries!")
+    else:
+        print("WE CANT ACESSS DELIVERIES BECAUSE NONE HAVE BEEN MADE")
+
+# View Rider's Pending Deliveries
+    
+def a_riders_pending_deliveries():
+    pass
+
 def get_all_completed_deliveries():
     deliveries = dms_db.get_all_completed_deliveries()
     print(f"\033[032m\033[1m *********All Completed Deliveries As At {datetime.now()} ********* \033[0m")

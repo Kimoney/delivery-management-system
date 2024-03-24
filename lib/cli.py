@@ -20,6 +20,7 @@ from helpers import (
     get_rider_by_location,
     update_rider,
     add_rider,
+    a_riders_completed_deliveries,
     delete_rider,
     get_all_completed_deliveries,
     get_all_pending_deliveries,
@@ -165,6 +166,9 @@ def main():
                 elif choice == "13":
                     location = input("Enter Rider's Location:> ")
                     get_rider_by_location(location)
+                elif choice == "14":
+                    id_ = input("Enter Rider's Id:> ")
+                    a_riders_completed_deliveries(id_)
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
         # elif choice == "4":
