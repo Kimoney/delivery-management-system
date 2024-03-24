@@ -28,7 +28,7 @@ class DeliveryManagementSystem:
     
     def create_order(self, product, quantity, cost, customer_name, location ):
 
-        order = Order(product=product, quantity=quantity, cost=cost, customer_name=customer_name, location=location.title())
+        order = Order(product=product.title(), quantity=quantity, cost=cost, customer_name=customer_name.title(), location=location.title())
         self.session.add(order)
         self.session.commit()
         print(f"\033[92m Success!! Order created at {datetime.now()} \033[0m")
@@ -266,11 +266,11 @@ class DeliveryManagementSystem:
 
 # Step 2: Modify the attributes of the queried Order
         try:
-            order.product = product
+            order.product = product.title()
             order.quantity = quantity
             order.cost = cost
-            order.customer_name = customer_name
-            order.location = location
+            order.customer_name = customer_name.title()
+            order.location = location.title()
             self.session.commit()
             print(f"\033[92m Success!! Order Updated{datetime.now()} \033[0m")
         except Exception as e:
@@ -291,9 +291,9 @@ class DeliveryManagementSystem:
 
 # Step 2: Modify the attributes of the queried Truck
         try:
-            truck.reg_no = reg_no
+            truck.reg_no = reg_no.upper()
             truck.truck_capacity = truck_capacity
-            truck.model = model
+            truck.model = model.title()
             self.session.commit()
             print(f"\033[92m Success!! Truck Updated{datetime.now()} \033[0m")
         except Exception as e:
@@ -313,7 +313,7 @@ class DeliveryManagementSystem:
 
 # Step 2: Modify the attributes of the queried Rider
         try:
-            rider.location = location
+            rider.location = location.title()
             rider.truck_id = truck_id
             self.session.commit()
             print(f"\033[92m Success!! Rider Re-Assigned{datetime.now()} \033[0m")
@@ -324,9 +324,9 @@ class DeliveryManagementSystem:
 
     # 4. Deliveries
             
-    def update_delivery(self, id_, order_id, rider_id):
-        if not id_ or not order_id or not rider_id:
-            print("\033[31m Error: DELIVERY ID, ORDER ID and RIDER ID ARE REQUIRED \033[0m")
+    # def update_delivery(self, id_, order_id, rider_id):
+    #     if not id_ or not order_id or not rider_id:
+    #         print("\033[31m Error: DELIVERY ID, ORDER ID and RIDER ID ARE REQUIRED \033[0m")
 
 # Step 1: Query the Delivery to update using its primary key
         delivery = self.session.query(Delivery).get(id_)
