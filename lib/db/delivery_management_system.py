@@ -230,13 +230,29 @@ class DeliveryManagementSystem:
     def get_all_completed_deliveries(self):
         return self.session.query(Delivery).all()
     
-    # 1. Delivery (Pending)
+    # 4.1. Delivery(Pending)
         
     def get_all_pending_deliveries(self):
         # Subquery to get IDs of orders that have corresponding records in Delivery table
         subquery = self.session.query(Delivery.order_id).distinct()
         # Retrieve orders whose IDs are not in the subquery
         return self.session.query(Order).filter(not_(Order.id.in_(subquery))).all()
+    
+    # 4.2 Delivery(Using ID)
+
+    def get_delivery_by_id(self, id_):
+        if not id_:
+            print(f"\033[31m Error: Delivery Id is Required\033[0m")
+        try:
+            id_ = int(id_)
+            if isinstance(id_, int):
+                delivery = self.session.query(Delivery).filter_by(id=id_).one()
+                return delivery
+            else:
+                raise Exception("\033[31m Error: Id Has To Be An Integer \033[0m")
+        except Exception as e:
+            self.session.rollback()
+            print(f"\033[31m Error: {e} \033[0m")
 
 # Update
     # 1. Orders
