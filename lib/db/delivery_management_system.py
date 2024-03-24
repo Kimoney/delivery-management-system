@@ -56,7 +56,7 @@ class DeliveryManagementSystem:
         if not name or not location or not truck_id:
             print("\033[31m Error: Name, Location and Truck ID are required \033[0m")
 
-        rider = Rider(name=name, location=location.title(), truck_id=truck_id)
+        rider = Rider(name=name.title(), location=location.title(), truck_id=truck_id)
 
         try:
             self.session.add(rider)

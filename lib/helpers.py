@@ -152,17 +152,32 @@ def update_rider(id_, location, truck_id):
     dms_db.update_rider(id_, location, truck_id)
     print(f"\033[093m Success!! Rider Assignment Completed at {datetime.now()}.\033[0m")
 
+#*************************DELETE*************************
+
+
 def delete_order(id_):
-    dms_db.delete_order(id_)
+    if dms_db.delete_order(id_):
+        print(f"\033[31mOrder Id: {id_} Successfully Deleted!!\033[0m")
+    else:
+        print(f"\033[31mOrder Id: {id_} Doesn't Exist!!!\033[0m")
     
 def delete_truck(id_):
-    dms_db.delete_truck(id_)
+    if dms_db.delete_truck(id_):
+        print(f"\033[31mTruck Id: {id_} Successfully Deleted!!\033[0m")
+    else:
+        print(f"\033[31mTruck Id: {id_} Doesn't Exist!!!\033[0m")
 
 def delete_rider(id_):
-    dms_db.delete_rider(id_)
+    if dms_db.delete_rider(id_):
+        print(f"\033[31mRider Id: {id_} Successfully Deleted!!\033[0m")
+    else:
+        print(f"\033[31mRider Id: {id_} Doesn't Exist!!!\033[0m")
 
 def delete_delivery(id_):
-    dms_db.delete_delivery(id_)
+    if dms_db.delete_delivery(id_):
+        print(f"\033[31mDelivery Id: {id_} Successfully Deleted!!\033[0m")
+    else:
+        print(f"\033[31mDelivery Id: {id_} Doesn't Exist!!!\033[0m")
 
 def exit_program():
     print("\033[92mTime To Say Goodbye! 👋🚚 \nDon't Worry, Your Deliveries Are In Safe Hands! 📦😄\nCatch You Later, With More Orders! 📦🚀\033[0m")
