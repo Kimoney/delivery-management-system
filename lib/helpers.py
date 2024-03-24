@@ -31,7 +31,8 @@ def create_delivery(order_id, rider_id):
     else:
         print("\033[31m Error: You Can't Deliver Orders Not Designated For Your Assigned Location.\nContact Admin If You Have To Deliver The Order! \033[0m")
 
-# GET ALL FUNCTIONS
+# GET ALL FUNCTIONS 
+# ================================ORDERS================================
 
 def get_all_orders():
     orders = dms_db.get_all_orders()
@@ -56,6 +57,8 @@ def get_order_by_location(location):
             print(f"\033[036m<Order No.: {order.id} | Customer: {order.customer_name} | Product :{order.product} | Quantity: {order.quantity} | Amount: {order.cost} | Location: {order.location}> \033[0m")
     else:
         return print(f"\033[31m No Orders Destined For {location} Found!!!\033[0m")
+
+# ================================TRUCKS================================
 
 def get_all_trucks():
     trucks = dms_db.get_all_trucks()
@@ -161,6 +164,8 @@ def a_riders_pending_deliveries(id_):
     else:
         print("\033[31mEnter A Valid Rider ID\033[0m")
 
+# ================================DELIVERIES================================
+
 def get_all_completed_deliveries():
     deliveries = dms_db.get_all_completed_deliveries()
     print(f"\033[032m\033[1m *********All Completed Deliveries As At {datetime.now()} ********* \033[0m")
@@ -174,6 +179,17 @@ def get_all_pending_deliveries():
 
     for pending in pending_deliveries:
         print(f"\033[036m<Delivery Id: {None} | Order: {pending.id} | Customer: {pending.customer_name} | Product :{pending.product} | Quantity: {pending.quantity} | Amount: {pending.cost} | Location: {pending.location}> \033[0m")
+
+def get_delivery_by_id(id_):
+    delivery = dms_db.get_delivery_by_id(id_)
+    if delivery:
+        print(f"\033[032m\033[1m ********* Delivery {id_} Details as at {datetime.now()} ********* \033[0m")
+        print(f"\033[036m<Delivery Id: {delivery.id} | Order: {delivery.order_id} | Completed At: {delivery.time} | By Rider {delivery.rider_id} > \033[0m")
+    else:
+        return print(f"\033[31m Delivery With Id {id_} Doesn't Exist!!!\033[0m")
+    
+
+# UPDATE METHODS
 
 def update_order(id_, product, quantity, cost, customer_name, location):
     dms_db.update_order(id_, product, quantity, cost, customer_name, location)

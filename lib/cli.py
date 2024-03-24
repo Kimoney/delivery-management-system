@@ -25,6 +25,7 @@ from helpers import (
     delete_rider,
     get_all_completed_deliveries,
     get_all_pending_deliveries,
+    get_delivery_by_id,
     delete_delivery,
     create_delivery,
 
@@ -177,15 +178,11 @@ def main():
                     get_all_completed_deliveries()
                 elif choice == "17":
                     get_all_pending_deliveries()
+                elif choice == "18":
+                    id_ = input("Enter Rider's Id:> ")
+                    get_delivery_by_id(id_)
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
-        # elif choice == "4":
-        #     product = input("Enter product name: ")
-        #     quantity = input("Enter quantity: ")
-        #     cost = input("Enter cost: ")
-        #     customer_name = input("Enter customer name: ")
-        #     location = input("Enter location: ")
-        #     create_order(product, quantity, cost, customer_name, location)
         else:
             print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
 
