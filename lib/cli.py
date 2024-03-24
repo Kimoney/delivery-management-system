@@ -21,6 +21,7 @@ from helpers import (
     update_rider,
     add_rider,
     a_riders_completed_deliveries,
+    a_riders_pending_deliveries,
     delete_rider,
     get_all_completed_deliveries,
     get_all_pending_deliveries,
@@ -169,6 +170,9 @@ def main():
                 elif choice == "14":
                     id_ = input("Enter Rider's Id:> ")
                     a_riders_completed_deliveries(id_)
+                elif choice == "15":
+                    id_ = input("Enter Rider's Id:> ")
+                    a_riders_pending_deliveries(id_)
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
         # elif choice == "4":

@@ -131,20 +131,35 @@ def get_rider_by_location(location):
 def a_riders_completed_deliveries(id_):
     deliveries = dms_db.get_all_completed_deliveries()
     id_ = int(id_)
-    if deliveries:
-        # print(f"\033[032m\033[1m *********{dms_db.get_rider_by_id(id_).name}'s Deliveries As At {datetime.now()}********* \033[0m")
+    rider = dms_db.get_rider_by_id(id_)
+    if rider:
+        print(f"\033[032m\033[1m *********{dms_db.get_rider_by_id(id_).name}'s Completed Deliveries As At {datetime.now()}********* \033[0m")
         for delivery in deliveries:
             if delivery.rider_id == id_:
                 print(f"\033[036m<Delivery Id: {delivery.id} | Order: {delivery.order_id} | Completed At: {delivery.time} | By Rider {delivery.rider_id} > \033[0m")
         else:
             print(f"{dms_db.get_rider_by_id(id_).name} has not made any deliveries!")
     else:
-        print("WE CANT ACESSS DELIVERIES BECAUSE NONE HAVE BEEN MADE")
+        print("\033[31mEnter A Valid Rider ID\033[0m")
 
 # View Rider's Pending Deliveries
     
-def a_riders_pending_deliveries():
-    pass
+def a_riders_pending_deliveries(id_):
+    id_ = int(id_)
+    rider = dms_db.get_rider_by_id(id_)
+    deliveries = dms_db.get_all_completed_deliveries()
+    if rider:
+        riders_orders = dms_db.get_order_by_location(rider.location)
+        print(f"\033[032m\033[1m *********{dms_db.get_rider_by_id(id_).name}'s Pending Deliveries As At {datetime.now()}********* \033[0m")
+        pending_deliveries = [order for order in riders_orders if order.id not in {delivery.order_id for delivery in deliveries}]
+
+        if pending_deliveries:
+            for pending in pending_deliveries:
+                print(f"\033[036m<Delivery Id: {None} | Order: {pending.id} | Customer: {pending.customer_name} | Product :{pending.product} | Quantity: {pending.quantity} | Amount: {pending.cost} | Location: {pending.location}> \033[0m")
+        else:
+            print("\033[031m<No Pending Deliveries Found!>\033[0m")
+    else:
+        print("\033[31mEnter A Valid Rider ID\033[0m")
 
 def get_all_completed_deliveries():
     deliveries = dms_db.get_all_completed_deliveries()
