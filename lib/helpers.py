@@ -224,25 +224,33 @@ def update_rider(id_, location, truck_id):
 
 
 def delete_order(id_):
-    if dms_db.delete_order(id_):
+    order = dms_db.get_order_by_id(id_)
+    if order:
+        dms_db.delete_order(id_)
         print(f"\033[31mOrder Id: {id_} Successfully Deleted!!\033[0m")
     else:
         print(f"\033[31mOrder Id: {id_} Doesn't Exist!!!\033[0m")
     
 def delete_truck(id_):
-    if dms_db.delete_truck(id_):
+    truck = dms_db.get_truck_by_id(id_)
+    if truck:
+        dms_db.delete_truck(id_)
         print(f"\033[31mTruck Id: {id_} Successfully Deleted!!\033[0m")
     else:
         print(f"\033[31mTruck Id: {id_} Doesn't Exist!!!\033[0m")
 
 def delete_rider(id_):
-    if dms_db.delete_rider(id_):
+    rider = dms_db.get_rider_by_id(id_)
+    if rider:
+        dms_db.delete_rider(id_)
         print(f"\033[31mRider Id: {id_} Successfully Deleted!!\033[0m")
     else:
         print(f"\033[31mRider Id: {id_} Doesn't Exist!!!\033[0m")
 
 def delete_delivery(id_):
-    if dms_db.delete_delivery(id_):
+    delivery = dms_db.get_delivery_by_id(id_)
+    if delivery:
+        dms_db.delete_delivery(id_)
         print(f"\033[31mDelivery Id: {id_} Successfully Deleted!!\033[0m")
     else:
         print(f"\033[31mDelivery Id: {id_} Doesn't Exist!!!\033[0m")

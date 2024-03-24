@@ -116,7 +116,8 @@ def main():
                     rider_id = input("Enter rider's id: ")
                     create_delivery(order_id, rider_id)
                 elif choice == "2":
-                    print("Should delete an existing delivery")
+                    id_ = input("Enter Delivery Id:> ")
+                    delete_delivery(id_)
                 elif choice == "3":
                     get_all_completed_deliveries()
                 elif choice == "4":
