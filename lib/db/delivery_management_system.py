@@ -306,7 +306,7 @@ class DeliveryManagementSystem:
 
     def update_rider(self, id_, location, truck_id):
         if not id_ or not location or not truck_id:
-            print("\033[31m Error: Rider id is required and an unassigned location & Truck \033[0m")
+            print("\033[31m Error: Rider id and an unassigned location & Truck are required \033[0m")
 
 # Step 1: Query the Rider to update using its primary key
         rider = self.session.query(Rider).get(id_)
@@ -324,9 +324,9 @@ class DeliveryManagementSystem:
 
     # 4. Deliveries
             
-    # def update_delivery(self, id_, order_id, rider_id):
-    #     if not id_ or not order_id or not rider_id:
-    #         print("\033[31m Error: DELIVERY ID, ORDER ID and RIDER ID ARE REQUIRED \033[0m")
+    def update_delivery(self, id_, order_id, rider_id):
+        if not id_ or not order_id or not rider_id:
+            print("\033[31m Error: DELIVERY ID, ORDER ID and RIDER ID ARE REQUIRED \033[0m")
 
 # Step 1: Query the Delivery to update using its primary key
         delivery = self.session.query(Delivery).get(id_)
