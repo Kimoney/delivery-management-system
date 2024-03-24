@@ -173,6 +173,10 @@ def main():
                 elif choice == "15":
                     id_ = input("Enter Rider's Id:> ")
                     a_riders_pending_deliveries(id_)
+                elif choice == "16":
+                    get_all_completed_deliveries()
+                elif choice == "17":
+                    get_all_pending_deliveries()
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
         # elif choice == "4":
