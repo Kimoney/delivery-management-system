@@ -187,7 +187,24 @@ def get_delivery_by_id(id_):
         print(f"\033[036m<Delivery Id: {delivery.id} | Order: {delivery.order_id} | Completed At: {delivery.time} | By Rider {delivery.rider_id} > \033[0m")
     else:
         return print(f"\033[31m Delivery With Id {id_} Doesn't Exist!!!\033[0m")
-    
+
+# Delivery Status
+
+def delivery_status(id_):
+    id_ = int(id_)
+    order = dms_db.get_order_by_id(id_)
+    completed_deliveries = dms_db.get_all_completed_deliveries()
+    pending_deliveries = dms_db.get_all_pending_deliveries()
+    if order:
+        # Code here
+        if order.id in [delivery.order_id for delivery in completed_deliveries]:
+            print(f"\033[032m\033[1m ********* Order {id_} Has Already Been Delivered ********* \033[0m")
+        elif order.id in [pending_order.id for pending_order in pending_deliveries]:
+            print(f"\033[032m\033[1m ********* Order {id_} Has Not Been Delivered ********* \033[0m")
+        else:
+            print(f"\033[032m\033[1m ********* Order {id_} Status Unknown********* \033[0m")
+    else:
+        print("\033[31mEnter A Valid Order ID\033[0m")
 
 # UPDATE METHODS
 

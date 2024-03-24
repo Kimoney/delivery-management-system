@@ -26,6 +26,7 @@ from helpers import (
     get_all_completed_deliveries,
     get_all_pending_deliveries,
     get_delivery_by_id,
+    delivery_status,
     delete_delivery,
     create_delivery,
 
@@ -179,8 +180,11 @@ def main():
                 elif choice == "17":
                     get_all_pending_deliveries()
                 elif choice == "18":
-                    id_ = input("Enter Rider's Id:> ")
+                    id_ = input("Enter Delivery Id:> ")
                     get_delivery_by_id(id_)
+                elif choice == "19":
+                    id_ = input("Enter Order Id:> ")
+                    delivery_status(id_)
                 else:
                     print(f"\033[032m\033[1m ******************INVALID CHOICE******************\033[0m")
         else:
