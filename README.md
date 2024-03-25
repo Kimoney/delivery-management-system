@@ -34,10 +34,11 @@ The following are the system requirements to have the programs running.
 
 To use the `DMS`, follow these steps:
 
-1. Run the application by executing `python lib/cli.py`.
-2. Follow the on-screen prompts to navigate through the menu options.
-3. Choose the desired functionality (e.g., View Orders, Create Delivery, Add Truck, etc.).
-4. Input data as required and follow the instructions to perform actions.
+1. Run `pipenv shell` to activate the virtual environment.
+2. Start the application by executing `python lib/cli.py`.
+3. Follow the on-screen prompts to navigate through the menu options.
+4. Choose the desired functionality (e.g., View Orders, Create Delivery, Add Truck, etc.).
+5. Input data as required and follow the instructions to perform actions.
 
 ## Menu Structure
 
