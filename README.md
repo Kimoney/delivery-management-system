@@ -20,6 +20,7 @@ The following are the system requirements to have the programs running.
 
 ## DEPENDENCIES
 - **SQLAlchemy**
+- **Tabulate**
 
 ## INSTALLATION
 

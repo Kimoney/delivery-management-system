@@ -1,5 +1,6 @@
 from db import delivery_management_system
 from datetime import datetime
+from tabulate import tabulate
 
 DMS = delivery_management_system.DeliveryManagementSystem
 # Create DataBase
@@ -38,23 +39,57 @@ def get_all_orders():
     orders = dms_db.get_all_orders()
     print(f"\033[032m\033[1m *********Orders As {datetime.now()} ********* \033[0m")
 
+    order_details = [
+        ["\033[036m\033[1mOrder No.", "Customer Name", "Product","Quantity","Amount","Location\033[0m"]
+    ]
     for order in orders:
-        print(f"\033[036m<Order No.: {order.id} | Customer: {order.customer_name} | Product :{order.product} | Quantity: {order.quantity} | Amount: KES {order.cost} | Location: {order.location}> \033[0m")
+        order_details.append([
+            f"\033[036m{order.id}",
+            order.customer_name,
+            order.product,
+            order.quantity,
+            order.cost,
+            f"{order.location}\033[0m"
+        ])
+    # Print Table
+    print(tabulate(order_details, headers="firstrow", tablefmt="fancy_outline"))
 
 def get_order_by_id(id_):
     order = dms_db.get_order_by_id(id_)
+    order_details = [
+        ["\033[036m\033[1mOrder No.", "Customer Name", "Product","Quantity","Amount","Location\033[0m"]
+    ]
     if order:
-        print(f"\033[036m<Order No.: {order.id} | Customer: {order.customer_name} | Product :{order.product} | Quantity: {order.quantity} | Amount: {order.cost} | Location: {order.location}> \033[0m")
+        order_details.append([
+            f"\033[036m{order.id}",
+            order.customer_name,
+            order.product,
+            order.quantity,
+            order.cost,
+            f"{order.location}\033[0m"
+        ])
+    # Print Table
+        print(tabulate(order_details, headers="firstrow", tablefmt="fancy_outline"))
     else:
         return print(f"\033[31m Order With Id {id_} Doesn't Exist!!!\033[0m")
 
 def get_order_by_location(location):
     orders = dms_db.get_order_by_location(location)
-
+    order_details = [
+        ["\033[036m\033[1mOrder No.", "Customer Name", "Product","Quantity","Amount","Location\033[0m"]
+    ]
     if orders:
-
         for order in orders:
-            print(f"\033[036m<Order No.: {order.id} | Customer: {order.customer_name} | Product :{order.product} | Quantity: {order.quantity} | Amount: {order.cost} | Location: {order.location}> \033[0m")
+            order_details.append([
+            f"\033[036m{order.id}",
+            order.customer_name,
+            order.product,
+            order.quantity,
+            order.cost,
+            f"{order.location}\033[0m"
+        ])
+    # Print Table
+        print(tabulate(order_details, headers="firstrow", tablefmt="fancy_outline"))
     else:
         return print(f"\033[31m No Orders Destined For {location} Found!!!\033[0m")
 
@@ -62,70 +97,159 @@ def get_order_by_location(location):
 
 def get_all_trucks():
     trucks = dms_db.get_all_trucks()
+    truck_details = [
+        ["\033[036m\033[1mTruck ID", "Registration No", "Truck Capacity","Model\033[0m"]
+    ]
     print(f"\033[032m\033[1m *********Your Fleet At {datetime.now()} ********* \033[0m")
-
     for truck in trucks:
-        print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
+        truck_details.append([
+            f"\033[036m{truck.id}",
+            truck.reg_no,
+            truck.truck_capacity,
+            f"{truck.model}\033[0m"
+        ])
+    # Print Table
+    print(tabulate(truck_details, headers="firstrow", tablefmt="fancy_outline"))
 
 def get_truck_by_id(id_):
     truck = dms_db.get_truck_by_id(id_)
+    truck_details = [
+        ["\033[036m\033[1mTruck ID", "Registration No", "Truck Capacity","Model\033[0m"]
+    ]
     if truck:
         print(f"\033[032m\033[1m ********* Truck {id_} Details on {datetime.now()} ********* \033[0m")
-        print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
+        truck_details.append([
+            f"\033[036m{truck.id}",
+            truck.reg_no,
+            truck.truck_capacity,
+            f"{truck.model}\033[0m"
+        ])
+    # Print Table
+        print(tabulate(truck_details, headers="firstrow", tablefmt="fancy_outline"))
     else:
         return print(f"\033[31m Truck With Id {id_} Doesn't Exist!!!\033[0m")
 
 def get_truck_by_reg_no(reg_no):
     truck = dms_db.get_truck_by_reg_no(reg_no)
+    truck_details = [
+        ["\033[036m\033[1mTruck ID", "Registration No", "Truck Capacity","Model\033[0m"]
+    ]
     if truck:
-        print(f"\033[032m\033[1m ********* Truck {reg_no}'s Details on {datetime.now()} ********* \033[0m")
-        print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
+        print(f"\033[032m\033[1m ********* Truck {reg_no.upper()} Details on {datetime.now()} ********* \033[0m")
+        truck_details.append([
+            f"\033[036m{truck.id}",
+            truck.reg_no,
+            truck.truck_capacity,
+            f"{truck.model}\033[0m"
+        ])
+    # Print Table
+        print(tabulate(truck_details, headers="firstrow", tablefmt="fancy_outline"))
     else:
         return print(f"\033[31m Truck {reg_no} Doesn't Exist!!!\033[0m")
     
 def get_truck_by_model(model):
     trucks = dms_db.get_truck_by_model(model)
+    truck_details = [
+        ["\033[036m\033[1mTruck ID", "Registration No", "Truck Capacity","Model\033[0m"]
+    ]
     if trucks:
-        print(f"\033[032m\033[1m *********{model} Trucks In Your Fleet As At {datetime.now()} ********* \033[0m")
+        print(f"\033[032m\033[1m *********{model.title()} Trucks In Your Fleet As At {datetime.now()} ********* \033[0m")
         for truck in trucks:
-            print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
+            truck_details.append([
+            f"\033[036m{truck.id}",
+            truck.reg_no,
+            truck.truck_capacity,
+            f"{truck.model}\033[0m"
+        ])
+    # Print Table
+        print(tabulate(truck_details, headers="firstrow", tablefmt="fancy_outline"))
     else:
         return print(f"\033[31m Truck {model} Doesn't Exist!!!\033[0m")
     
 def get_assigned_trucks():
     trucks = dms_db.get_assigned_trucks()
+    truck_details = [
+        ["\033[036m\033[1mTruck ID", "Registration No", "Truck Capacity","Model\033[0m"]
+    ]
     print(f"\033[032m\033[1m *********Assigned Trucks As At {datetime.now()} ********* \033[0m")
     for truck in trucks:
-        print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
+        truck_details.append([
+        f"\033[036m{truck.id}",
+        truck.reg_no,
+        truck.truck_capacity,
+        f"{truck.model}\033[0m"
+        ])
+    # Print Table
+    print(tabulate(truck_details, headers="firstrow", tablefmt="fancy_outline"))
 
 def get_all_unassigned_trucks():
     trucks = dms_db.get_all_unassigned_trucks()
+    truck_details = [
+        ["\033[036m\033[1mTruck ID", "Registration No", "Truck Capacity","Model\033[0m"]
+    ]
     print(f"\033[032m\033[1m *********Unassigned Trucks As At {datetime.now()} ********* \033[0m")
     for truck in trucks:
-        print(f"\033[036m<Truck ID.: {truck.id} | Registration No.: {truck.reg_no} | Capacity: {truck.truck_capacity}cc | Model: {truck.model}> \033[0m")
+        truck_details.append([
+        f"\033[036m{truck.id}",
+        truck.reg_no,
+        truck.truck_capacity,
+        f"{truck.model}\033[0m"
+        ])
+    # Print Table
+    print(tabulate(truck_details, headers="firstrow", tablefmt="fancy_outline"))
 
 # ================================RIDERS================================
         
 def get_all_riders():
     riders = dms_db.get_all_riders()
+    rider_details = [
+        ["\033[036m\033[1mRider ID", "Truck ID", "Location","Name\033[0m"]
+    ]
     print(f"\033[032m\033[1m *********Your Riders As At {datetime.now()} ********* \033[0m")
-
     for rider in riders:
-        print(f"\033[036m<Rider Id: {rider.id} | Assigned Truck: {rider.truck_id} | Location: {rider.location} | Name: {rider.name}> \033[0m")
+        rider_details.append([
+        f"\033[036m{rider.id}",
+        rider.truck_id,
+        rider.location,
+        f"{rider.name}\033[0m"
+        ])
+    # Print Table
+    print(tabulate(rider_details, headers="firstrow", tablefmt="fancy_outline"))
+
 
 def get_rider_by_id(id_):
     rider = dms_db.get_rider_by_id(id_)
+    rider_details = [
+        ["\033[036m\033[1mRider ID", "Truck ID", "Location","Name\033[0m"]
+    ]
     if rider:
         print(f"\033[032m\033[1m ********* Rider {id_} Details as at {datetime.now()} ********* \033[0m")
-        print(f"\033[036m<Rider Id: {rider.id} | Assigned Truck: {rider.truck_id} | Location: {rider.location} | Name: {rider.name}> \033[0m")
+        rider_details.append([
+        f"\033[036m{rider.id}",
+        rider.truck_id,
+        rider.location,
+        f"{rider.name}\033[0m"
+        ])
+    # Print Table
+        print(tabulate(rider_details, headers="firstrow", tablefmt="fancy_outline"))
     else:
         return print(f"\033[31m Rider With Id {id_} Doesn't Exist!!!\033[0m")
 
 def get_rider_by_location(location):
     rider = dms_db.get_rider_by_location(location)
+    rider_details = [
+        ["\033[036m\033[1mRider ID", "Truck ID", "Location","Name\033[0m"]
+    ]
     if rider:
-        print(f"\033[032m\033[1m *********{location} Rider's Details as at {datetime.now()} ********* \033[0m")
-        print(f"\033[036m<Rider Id: {rider.id} | Assigned Truck: {rider.truck_id} | Location: {rider.location} | Name: {rider.name}> \033[0m")
+        print(f"\033[032m\033[1m ********* Rider {location.title()} Details as at {datetime.now()} ********* \033[0m")
+        rider_details.append([
+        f"\033[036m{rider.id}",
+        rider.truck_id,
+        rider.location,
+        f"{rider.name}\033[0m"
+        ])
+    # Print Table
+        print(tabulate(rider_details, headers="firstrow", tablefmt="fancy_outline"))
     else:
         return print(f"\033[31m No Riders In {location}.\nYou, Can Assign One Using the `Manage Supply Chain` option!!\033[0m")
 
@@ -133,15 +257,23 @@ def get_rider_by_location(location):
     
 def a_riders_completed_deliveries(id_):
     deliveries = dms_db.get_all_completed_deliveries()
+    delivery_details = [
+        ["\033[036m\033[1mDelivery ID", "Order ID", "Time","Rider ID\033[0m"]
+    ]
     id_ = int(id_)
     rider = dms_db.get_rider_by_id(id_)
     if rider:
         print(f"\033[032m\033[1m *********{dms_db.get_rider_by_id(id_).name}'s Completed Deliveries As At {datetime.now()}********* \033[0m")
         for delivery in deliveries:
             if delivery.rider_id == id_:
-                print(f"\033[036m<Delivery Id: {delivery.id} | Order: {delivery.order_id} | Completed At: {delivery.time} | By Rider {delivery.rider_id} > \033[0m")
-        else:
-            print(f"{dms_db.get_rider_by_id(id_).name} has not made any deliveries!")
+                delivery_details.append([
+                f"\033[036m{delivery.id}",
+                delivery.order_id,
+                delivery.time,
+                f"{delivery.rider_id}\033[0m"
+                ])
+    # Print Table
+        print(tabulate(delivery_details, headers="firstrow", tablefmt="fancy_outline"))
     else:
         print("\033[31mEnter A Valid Rider ID\033[0m")
 
@@ -151,14 +283,25 @@ def a_riders_pending_deliveries(id_):
     id_ = int(id_)
     rider = dms_db.get_rider_by_id(id_)
     deliveries = dms_db.get_all_completed_deliveries()
+    delivery_details = [
+        ["\033[036m\033[1mOrder ID", "Customer", "Product", "Quantity", "Amount", "Location\033[0m"]
+    ]
     if rider:
         riders_orders = dms_db.get_order_by_location(rider.location)
-        print(f"\033[032m\033[1m *********{dms_db.get_rider_by_id(id_).name}'s Pending Deliveries As At {datetime.now()}********* \033[0m")
         pending_deliveries = [order for order in riders_orders if order.id not in {delivery.order_id for delivery in deliveries}]
 
         if pending_deliveries:
             for pending in pending_deliveries:
-                print(f"\033[036m<Delivery Id: {None} | Order: {pending.id} | Customer: {pending.customer_name} | Product :{pending.product} | Quantity: {pending.quantity} | Amount: {pending.cost} | Location: {pending.location}> \033[0m")
+                delivery_details.append([
+                f"\033[036m{pending.id}",
+                pending.customer_name,
+                pending.product,
+                pending.quantity,
+                pending.cost,
+                f"{pending.location}\033[0m"
+                ])
+    # Print Table
+            print(tabulate(delivery_details, headers="firstrow", tablefmt="fancy_outline"))
         else:
             print("\033[031m<No Pending Deliveries Found!>\033[0m")
     else:
@@ -168,23 +311,53 @@ def a_riders_pending_deliveries(id_):
 
 def get_all_completed_deliveries():
     deliveries = dms_db.get_all_completed_deliveries()
+    delivery_details = [
+        ["\033[036m\033[1mDelivery ID", "Order ID", "Time","Rider ID\033[0m"]
+    ]
     print(f"\033[032m\033[1m *********All Completed Deliveries As At {datetime.now()} ********* \033[0m")
-
     for delivery in deliveries:
-        print(f"\033[036m<Delivery Id: {delivery.id} | Order: {delivery.order_id} | Completed At: {delivery.time} | By Rider {delivery.rider_id} > \033[0m")
+        delivery_details.append([
+                f"\033[036m{delivery.id}",
+                delivery.order_id,
+                delivery.time,
+                f"{delivery.rider_id}\033[0m"
+                ])
+    # Print Table
+    print(tabulate(delivery_details, headers="firstrow", tablefmt="fancy_outline"))
 
 def get_all_pending_deliveries():
     pending_deliveries = dms_db.get_all_pending_deliveries()
+    delivery_details = [
+        ["\033[036m\033[1mOrder ID", "Customer", "Product", "Quantity", "Amount", "Location\033[0m"]
+    ]
     print(f"\033[032m\033[1m *********All Pending Deliveries As At {datetime.now()} ********* \033[0m")
-
     for pending in pending_deliveries:
-        print(f"\033[036m<Delivery Id: {None} | Order: {pending.id} | Customer: {pending.customer_name} | Product :{pending.product} | Quantity: {pending.quantity} | Amount: {pending.cost} | Location: {pending.location}> \033[0m")
+        delivery_details.append([
+                f"\033[036m{pending.id}",
+                pending.customer_name,
+                pending.product,
+                pending.quantity,
+                pending.cost,
+                f"{pending.location}\033[0m"
+                ])
+    # Print Table
+    print(tabulate(delivery_details, headers="firstrow", tablefmt="fancy_outline"))
 
 def get_delivery_by_id(id_):
     delivery = dms_db.get_delivery_by_id(id_)
+    delivery_details = [
+        ["\033[036m\033[1mDelivery ID", "Order ID", "Time","Rider ID\033[0m"]
+    ]
     if delivery:
         print(f"\033[032m\033[1m ********* Delivery {id_} Details as at {datetime.now()} ********* \033[0m")
-        print(f"\033[036m<Delivery Id: {delivery.id} | Order: {delivery.order_id} | Completed At: {delivery.time} | By Rider {delivery.rider_id} > \033[0m")
+        delivery_details.append([
+                f"\033[036m{delivery.id}",
+                delivery.order_id,
+                delivery.time,
+                f"{delivery.rider_id}\033[0m"
+                ])
+    # Print Table
+        print(tabulate(delivery_details, headers="firstrow", tablefmt="fancy_outline"))
     else:
         return print(f"\033[31m Delivery With Id {id_} Doesn't Exist!!!\033[0m")
 
