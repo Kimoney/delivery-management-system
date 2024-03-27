@@ -23,6 +23,7 @@ class DeliveryManagementSystem:
             f"=====Success!! Database {self.name} Created Successfully"
         )
     
+ #*****************************CREATE*****************************   
 # CREATE ENTRIES
     # 1. Order
     
@@ -82,6 +83,8 @@ class DeliveryManagementSystem:
             self.session.rollback()
             print(f"\033[31m Error: {e} \033[0m")
 
+#*****************************READ*****************************
+            
 # GET ALL
     # 1.0 Orders(All)
         
@@ -254,7 +257,7 @@ class DeliveryManagementSystem:
             self.session.rollback()
             print(f"\033[31m Error: {e} \033[0m")
 
-# Update
+#*****************************UPDATE*****************************
     # 1. Orders
 
     def update_order(self, id_, product, quantity, cost, customer_name, location):
@@ -342,8 +345,7 @@ class DeliveryManagementSystem:
             print("\033[31m Error: DELIVERY ID, ORDER ID and RIDER ID ARE REQUIRED \033[0m")
             print(f"\033[31m Error: {e} \033[0m")
 
-
-# DELETE
+#*****************************DELETE*****************************
     # 1. Orders
         
     def delete_order(self, id_):
@@ -399,14 +401,3 @@ class DeliveryManagementSystem:
     # Step 3: Commit the transaction
             self.session.commit()
             print(f"\033[31m DELIVERY ID {id_} DELETED SUCCESSFULLY!! \033[0m")
-
-
-if __name__ == '__main__':
-    pass
-
-    # trial = DeliveryManagementSystem("dms_test.db")
-    # print(f"\033[92m Success!! Database Created at {datetime.now()} \033[0m")
-    # trial.create_order("Laptop", 5, 2500, "Kimani", "Nairobi")
-    # print(f"\033[92m Success!! Order Created at {datetime.now()} \033[0m")
-    # trial.add_truck("KDA 969K", 2500, "Mitsubishi FH")
-    # print(f"\033[92m Success!! Truck Added at {datetime.now()} \033[0m")    
