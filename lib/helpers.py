@@ -379,7 +379,7 @@ def delivery_status(id_):
     else:
         print("\033[31mEnter A Valid Order ID\033[0m")
 
-# UPDATE METHODS
+#*************************UPDATE*************************
 
 def update_order(id_, product, quantity, cost, customer_name, location):
     dms_db.update_order(id_, product, quantity, cost, customer_name, location)
