@@ -46,7 +46,6 @@ The following are the system requirements to have the programs running.
     ```bash
     pip install -r requirements.txt
     ```
-    *Note: You may need to create a `requirements.txt` file by running `pip freeze > requirements.txt` after installing dependencies manually, or simply install `SQLAlchemy` and `Tabulate` directly: `pip install SQLAlchemy tabulate`.*
 4.  **Run `python -m lib.seed` to create a test database, and populate it with data.**
 5.  **Run `python lib/cli.py` to run `DMS`**
 
