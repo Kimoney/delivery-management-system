@@ -26,37 +26,71 @@ The following are the system requirements to have the programs running.
 
 - **Clone the repository.**
 - **Navigate to the project directory and open in terminal.**
-- **Run `pipenv install` to create a virtual environment and install required `Dependencies`**
-- **Run `pipenv shell` to activate the virtual environment.**
-- **Run `python -m lib.seed` to create a test database, and populate it with data.**
-- **Run `python lib/cli.py` to run `DMS`**
+
+### Using `venv` (recommended for most users)
+
+1.  **Create a virtual environment:**
+    ```bash
+    python3 -m venv venv
+    ```
+2.  **Activate the virtual environment:**
+    *   On macOS and Linux:
+        ```bash
+        source venv/bin/activate
+        ```
+    *   On Windows:
+        ```bash
+        .\venv\Scripts\activate
+        ```
+3.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+    *Note: You may need to create a `requirements.txt` file by running `pip freeze > requirements.txt` after installing dependencies manually, or simply install `SQLAlchemy` and `Tabulate` directly: `pip install SQLAlchemy tabulate`.*
+4.  **Run `python -m lib.seed` to create a test database, and populate it with data.**
+5.  **Run `python lib/cli.py` to run `DMS`**
+
+### Using `pipenv` (for developers managing project dependencies)
+
+1.  **Install `pipenv` globally if you haven't already:**
+    ```bash
+    pip install pipenv
+    ```
+2.  **Run `pipenv install` to create a virtual environment and install required `Dependencies`.**
+3.  **Run `pipenv shell` to activate the virtual environment.**
+4.  **Run `python -m lib.seed` to create a test database, and populate it with data.**
+5.  **Run `python lib/cli.py` to run `DMS`**
 
 ## USAGE
 
 To use the `DMS`, follow these steps:
 
-1. Run `pipenv shell` to activate the virtual environment.
-2. Start the application by executing `python lib/cli.py`.
-3. Follow the on-screen prompts to navigate through the menu options.
-4. Choose the desired functionality (e.g., View Orders, Create Delivery, Add Truck, etc.).
-5. Input data as required and follow the instructions to perform actions.
+1.  **Activate the virtual environment:**
+    *   If using `venv`:
+        *   On macOS and Linux: `source venv/bin/activate`
+        *   On Windows: `.\venv\Scripts\activate`
+    *   If using `pipenv`: `pipenv shell`
+2.  Start the application by executing `python lib/cli.py`.
+3.  Follow the on-screen prompts to navigate through the menu options.
+4.  Choose the desired functionality (e.g., View Orders, Create Delivery, Add Truck, etc.).
+5.  Input data as required and follow the instructions to perform actions.
 
 ## Menu Structure
 
 The DMS features a menu-driven interface with the following options:
 
-- **Manage Supply Chain:** View, add, edit, and delete trucks and riders.
-- **Order Fulfillment:** Create, delete, and view deliveries and orders.
-- **Reports:** Generate various reports to analyze order and delivery data.
+-   **Manage Supply Chain:** View, add, edit, and delete trucks and riders.
+-   **Order Fulfillment:** Create, delete, and view deliveries and orders.
+-   **Reports:** Generate various reports to analyze order and delivery data.
 
 For detailed instructions on each menu option, refer to the application's user manual.
 
 ## Contributing
 Contributions to the `DMS` project are welcome! To contribute, please follow these guidelines:
 
-- Fork the repository and create a new branch for your feature or bug fix.
-- Implement your changes and ensure that the code adheres to project standards.
-- Submit a pull request detailing the changes made and any relevant information.
+-   Fork the repository and create a new branch for your feature or bug fix.
+-   Implement your changes and ensure that the code adheres to project standards.
+-   Submit a pull request detailing the changes made and any relevant information.
 
 ## License
 This project is licensed under the **MIT License**.
